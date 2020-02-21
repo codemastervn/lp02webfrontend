@@ -271,58 +271,58 @@
 		}
 		//var x=JSON.parse(sessionStorage.getItem("arr_index"));
 		// var y=JSON.parse(sessionStorage.getItem("sl"));
-		// function giohang(){
-		// 	var out="<div id='div1_3'>";
-		// 	out1 = '';
-		// 	var tong_gia=0;
-		// 	for(var i = 0; i < k.length; i++)
-		// 	{
-		// 		for (var j = 0; j <dsdt.length; j++) {
-		// 			if(k[i].ms == dsdt[j].ma)
-		// 			{
-		// 				out1+=	"<div id='div4_3'>"+
-		// 							"<div id='div2_3'>"+ 
-		// 						        "<div id='div1_2_3'>"+
-		// 						        	"<img src='images/"+dsdt[j].h+"' id='h1'>"+
-		// 						        "</div>"+
-		// 								"<div id='div2_2_3'>"+
-		// 									"<p id='p1'> Điện thoại "+ dsdt[j].ten +"</p><p><ul><li>"+dsdt[j].km+"</li><ul></p>"+
-		// 								"</div>"+
-		// 								"<div>"+
-		// 									"<input type='button' onclick='xoa("+i+")' value='xóa'>"+
-		// 								"</div>"+
-		// 							"</div>"+
+		function giohang(){
+			var out="<div id='div1_3'>";
+			out1 = '';
+			var tong_gia=0;
+			for(var i = 0; i < k.length; i++)
+			{
+				for (var j = 0; j <dsdt.length; j++) {
+					if(k[i].ms == dsdt[j].ma)
+					{
+						out1+=	"<div id='div4_3'>"+
+									"<div id='div2_3'>"+ 
+								        "<div id='div1_2_3'>"+
+								        	"<img src='images/"+dsdt[j].h+"' id='h1'>"+
+								        "</div>"+
+										"<div id='div2_2_3'>"+
+											"<p id='p1'> Điện thoại "+ dsdt[j].ten +"</p><p><ul><li>"+dsdt[j].km+"</li><ul></p>"+
+										"</div>"+
+										"<div>"+
+											"<input type='button' onclick='xoa("+i+")' value='xóa'>"+
+										"</div>"+
+									"</div>"+
 
-		// 							"<div id='div3_3'>"+
-		// 								"<span id='span1'>"+numberWithCommas(dsdt[j].gia)+"đ</span>"+
-		// 								"<p><table id='table1_div3_3'><tr>"+
-		// 									"<td onclick='giam("+i+")'>-</td>"+
-		// 									"<td>"+k[i].qty+"</td>"+
-		// 									"<td onclick='tang("+i+")'>+</td>"+
-		// 								"</tr></table></p>"+
-		// 							"</div>"+
-		// 							"<table id='table2_div3_3'><tr><td></td></tr></table>"+
-		// 						"</div><br>";
-		// 				tong_gia += copy1[j].gia*k[i].qty;
-		// 			}
+									"<div id='div3_3'>"+
+										"<span id='span1'>"+numberWithCommas(dsdt[j].gia)+"đ</span>"+
+										"<p><table id='table1_div3_3'><tr>"+
+											"<td onclick='giam("+i+")'>-</td>"+
+											"<td>"+k[i].qty+"</td>"+
+											"<td onclick='tang("+i+")'>+</td>"+
+										"</tr></table></p>"+
+									"</div>"+
+									"<table id='table2_div3_3'><tr><td></td></tr></table>"+
+								"</div><br>";
+						tong_gia += copy1[j].gia*k[i].qty;
+					}
 			
-		// 		}
+				}
 				
-		// 	}
+			}
 				
 
-		// 		 out2 =	"<div id='div5_3'>"+
-		// 					"<div id='div1_5_3'>"+
-		// 						"<p>Tổng tiền:</p><p>Giảm:</p><p  id='p2'>Cần thanh toán:</p>"+
-		// 					"</div>"+
-		// 					"<div id='div2_5_3'>"+
-		// 						"<p>"+numberWithCommas(tong_gia)+"đ</p><p>...</p><p id='p3'>"+numberWithCommas(tong_gia)+"đ</p>"+
-		// 					"</div>"+
-		// 				"</div>"+
-		// 			"</div>";
-		// 	document.getElementById("div3").innerHTML=out + out1 + out2;
-		// }
-		// giohang();
+				 out2 =	"<div id='div5_3'>"+
+							"<div id='div1_5_3'>"+
+								"<p>Tổng tiền:</p><p>Giảm:</p><p  id='p2'>Cần thanh toán:</p>"+
+							"</div>"+
+							"<div id='div2_5_3'>"+
+								"<p>"+numberWithCommas(tong_gia)+"đ</p><p>...</p><p id='p3'>"+numberWithCommas(tong_gia)+"đ</p>"+
+							"</div>"+
+						"</div>"+
+					"</div>";
+			document.getElementById("div3").innerHTML=out + out1 + out2;
+		}
+		giohang();
 		
 		function xoa(i){
 			k.splice(i,1);
