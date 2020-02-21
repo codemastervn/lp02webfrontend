@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JS - Quản lý Sinh Viên</title>
+    <style type="text/css">
+    .float_right {
+        float: right;
+    }
+
+    #inputForm {
+        width: 360px;
+        border: 1px solid lightgray;
+    }
+
+    #result {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 80%;
+    }
+
+    #result td,
+    #result th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #result tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #result tr:hover {
+        background-color: #ddfada;
+    }
+
+    #result .bad {
+        color: red;
+    }
+
+    #result .good {
+        color: green;
+    }
+
+    #result th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    th {
+        background: lightgreen;
+    }
+
+    .numtype {
+        text-align: right;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Chương trình Quản lý Sinh Viên</h1>
+    <fieldset id="inputForm">
+        <legend><h3>Nhập Thông Tin</h3></legend>
+        <table>
+            <tr>
+                <td>Họ đệm:</td>
+                <td><input id="hodem" size="40"></td>
+            </tr>
+            <tr>
+                <td>Tên:</td>
+                <td><input id="ten" size="40"></td>
+            </tr>
+            <tr>
+                <td>Năm sinh:</td>
+                <td>
+                    <div id="divnamsinh"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Giới tính</td>
+                <td><input type=radio id="gender1" name="gender" value="Nam"> Nam <input type=radio id="gender2" name="gender" value="Nữ"> Nữ</td>
+            </tr>
+            <tr>
+                <td>Lý thuyết:</td>
+                <td><input id="theory" size="10"></td>
+            </tr>
+            <tr>
+                <td>Thực hành:</td>
+                <td><input id="lab" size="10"></td>
+            </tr>
+        </table>
+        <hr>
+        <div>
+            <button onclick="add()">Thêm</button>
+            <button onclick="update()">Sửa</button>
+            <button onclick="clearForm()">Xoá</button>
+            <div class="float_right">
+                Sắp xếp:
+                <button onclick="orderByName()">TÊN</button>
+                <button onclick="orderByRank()">ĐIỂM</button>
+            </div>
+        </div>
+    </fieldset>
+    <h2>Danh sách Sinh Viên</h2>
+    <div id="demo"></div>
+    <script>
+    var year = new Date().getFullYear();
+    var min = year - 35,
+        max = year - 15;
+
+    var optionNamSinh = "<select id='namsinh'><option></option>";
+    for (var i = min; i <= max; i++) {
+        optionNamSinh += '<option>' + i + '</option>';
+    }
+    optionNamSinh += "</select>";
+
+    document.getElementById('divnamsinh').innerHTML = optionNamSinh;
+
+    var selectedSV = -1;
+    var dsSV = [{
+            hodem: "Nguyễn Văn",
+            ten: "Anh",
+            diemLT: 9,
+            diemTH: 8,
+            namSinh: 1999,
+            gioiTinh: "Nam",
+            diemTB: function() { return tinhDiem(this); },
+            xepLoai: function() { return xepLoai(this); },
+        },
+        {
+            hodem: "Trần Thị",
+            ten: "Bình",
+            namSinh: 1998,
+            diemLT: 6,
+            diemTH: 7,
+            gioiTinh: "Nữ",
+            diemTB: function() { return tinhDiem(this); },
+            xepLoai: function() { return xepLoai(this); },
+        },
+        {
+            hodem: "Nguyễn Cảnh",
+            ten: "Chân",
+            namSinh: 2000,
+            diemLT: 8,
+            diemTH: 10,
+            gioiTinh: "Nam",
+            diemTB: function() { return tinhDiem(this); },
+            xepLoai: function() { return xepLoai(this); },
+        },
+        {
+            hodem: "Trần Bình",
+            ten: "Minh",
+            namSinh: 1997,
+            diemLT: 5,
+            diemTH: 4,
+            gioiTinh: "Nam",
+            diemTB: function() { return tinhDiem(this); },
+            xepLoai: function() { return xepLoai(this); },
+        },
+        {
+            hodem: "Nguyễn Quốc",
+            ten: "Thịnh",
+            namSinh: 1999,
+            diemLT: 8,
+            diemTH: 7,
+            gioiTinh: "Nam",
+            diemTB: function() { return tinhDiem(this); },
+            xepLoai: function() { return xepLoai(this); },
+        },
+    ];
+
+    function compareName(a, b) {
+        if (a.ten < b.ten) {
+            return -1;
+        }
+        if (a.ten > b.ten) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    function compareRank(a, b) {
+        if (a.diemTB() > b.diemTB()) {
+            return -1;
+        }
+        if (a.diemTB() < b.diemTB()) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    function orderByName() {
+        dsSV.sort(compareName);
+
+        listAll();
+    }
+
+    function orderByRank() {
+        dsSV.sort(compareRank);
+
+        listAll();
+    }
+
+    function tinhDiem(item) {
+        return (1 * item.diemLT + 1 * item.diemTH) / 2;
+    }
+
+    function xepLoai(item) {
+        var dtb = tinhDiem(item);
+        var loai = "";
+
+        if (dtb >= 8) loai = "Giỏi";
+        else if (dtb >= 6.5) loai = "Khá";
+        else if (dtb >= 5) loai = "Trung bình";
+        else loai = "Yếu";
+
+        return loai;
+    }
+
+    function add() {
+        var gender = '';
+
+        if (document.getElementById('gender1').checked) {
+            gender = document.getElementById('gender1').value;
+        } else if (document.getElementById('gender2').checked) {
+            gender = document.getElementById('gender2').value;
+        }
+
+        var student = {
+            hodem: document.getElementById('hodem').value,
+            ten: document.getElementById('ten').value,
+            diemLT: document.getElementById('theory').value,
+            diemTH: document.getElementById('lab').value,
+            namSinh: document.getElementById('namsinh').value,
+            gioiTinh: gender,
+            diemTB: function() { return tinhDiem(this); },
+            xepLoai: function() { return xepLoai(this); },
+        }
+
+        dsSV.push(student);
+
+        listAll();
+    }
+
+    function remove(index) {
+        dsSV.splice(index, 1);
+
+        listAll();
+    }
+
+    function update() {
+        var gender = '';
+
+        if (document.getElementById('gender1').checked) {
+            gender = document.getElementById('gender1').value;
+        } else if (document.getElementById('gender2').checked) {
+            gender = document.getElementById('gender2').value;
+        }
+
+        var student = {
+            hodem: document.getElementById('hodem').value,
+            ten: document.getElementById('ten').value,
+            diemLT: document.getElementById('theory').value,
+            diemTH: document.getElementById('lab').value,
+            namSinh: document.getElementById('namsinh').value,
+            gioiTinh: gender,
+            diemTB: function() { return tinhDiem(this); },
+            xepLoai: function() { return xepLoai(this); },
+        }
+
+        dsSV[selectedSV] = student;
+
+        listAll();
+    }
+
+    function clearForm() {
+        document.getElementById('hodem').value = '';
+        document.getElementById('ten').value = '';
+        document.getElementById('theory').value = '';
+        document.getElementById('lab').value = '';
+        document.getElementById('namsinh').value = '';
+        document.getElementById('gender1').checked = false;
+        document.getElementById('gender2').checked = false;
+
+        selectedSV = -1;
+    }
+
+    function getById(index) {
+        if (index > dsSV.length - 1) index = dsSV.length - 1;
+
+        if (index > -1) {
+            student = dsSV[index];
+
+            document.getElementById('hodem').value = student.hodem;
+            document.getElementById('ten').value = student.ten;
+            document.getElementById('theory').value = student.diemLT;
+            document.getElementById('lab').value = student.diemTH;
+            document.getElementById('namsinh').value = student.namSinh;
+
+            var gioiTinh = student.gioiTinh;
+            document.getElementById('gender1').checked = false;
+            document.getElementById('gender2').checked = false;
+            if (gioiTinh == document.getElementById('gender1').value) {
+                document.getElementById('gender1').checked = true;
+            }
+            if (gioiTinh == document.getElementById('gender2').value) {
+                document.getElementById('gender2').checked = true;
+            }
+        }
+
+        selectedSV = index;
+    }
+
+    function listAll() {
+        var output = '<table id="result">';
+        var year = new Date().getFullYear();
+
+        output += "<tr><th>STT</th><th>Họ và Tên</th><th>Giới tính</th><th>Tuổi</th><th>Lý Thuyết</th><th>Thực Hành</th><th>Trung bình</th><th>Xếp loại</th><th>Action</th></tr>"
+        for (var i = 0; i < dsSV.length; i++) {
+            var lineStatus = "";
+            if (dsSV[i].diemTB() < 5) lineStatus = "class='bad'";
+            else if (dsSV[i].diemTB() >= 8) lineStatus = "class='good'";
+
+            output += "<tr onclick='getById(" + i + ")' " + lineStatus + "><td>" + (i + 1) +
+                "</td><td>" + dsSV[i].hodem + " " + dsSV[i].ten +
+                "</td><td>" + dsSV[i].gioiTinh +
+                "</td><td class='numtype'>" + (year - dsSV[i].namSinh) +
+                "</td><td class='numtype'>" + dsSV[i].diemLT +
+                "</td><td class='numtype'>" + dsSV[i].diemTH +
+                "</td><td class='numtype'>" + dsSV[i].diemTB() +
+                "</td><td>" + dsSV[i].xepLoai() +
+                "</td><td><button onclick='remove(" + i + ")'>Xoá</button>" +
+                "</td></tr>";
+        }
+        output += "</table>";
+        document.getElementById("demo").innerHTML = output;
+    }
+
+    listAll();
+    </script>
+</body>
+
+</html>

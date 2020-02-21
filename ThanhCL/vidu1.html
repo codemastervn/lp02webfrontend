@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>Ví dụ 1 về JavaScript</title>
+</head>
+<body>
+	<h1>Ví dụ JavaScript</h1>
+	<p>Ngày hiện tại:
+		<script>
+			var date = new Date();
+			document.write(date.toDateString());
+		</script>
+	</p>
+	<p>Năm hiện tại: <span id="namhientai" style="color:red"></span></p>
+	<script>
+		var date = new Date();
+		var year = date.getFullYear();
+
+		document.getElementById("namhientai").innerHTML = year;
+	</script>
+
+	<script>
+		var hoTen = prompt('Bạn tên gì?');
+		document.write('<h2>Chào bạn ' + hoTen + '</h2>');
+	</script>
+</body>
+</html>
