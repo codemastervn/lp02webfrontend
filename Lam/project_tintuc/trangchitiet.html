@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>trangchitiet</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="duanweb.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script>
+		var chitiet=[
+		{
+			title:'<h1>Một công dân Mỹ chết ở Vũ Hán vì virus corona</h1>',
+			tomtat:'<h4>Một công dân Mỹ 60 tuổi được chẩn đoán nhiễm virus corona mới (nCoV) đã tử vong tại Vũ Hán ngày 6/2, đại sứ quán Mỹ tại Bắc Kinh cho biết<h4>',
+			img:'<img src="https://icdn.dantri.com.vn/zoom/188_158//2020/02/08/trung-quoc-ncov-2-1581143760556.jpg">',
+			noidung:'<p>Hiện tất cả các bệnh viện tại thành phố Vũ Hán đều quá tải. Theo Ủy ban Y tế Vũ Hán, gần như tất cả các giường bệnh tại các bệnh viện đều đã có bệnh nhân. Các bác sĩ tại Vũ Hán cũng đang chạy đua với thời gian để điều trị và cách ly các bệnh nhân bị nhiễm virus corona chủng mới. Trong ảnh: Người nhà một bệnh nhân đeo khẩu trang, trùm và đội túi ni lông để làm đồ bảo hộ tạm thời, khi nhìn vào khu vực chăm sóc đặc biệt tại bệnh viện Zhongnan thuộc Đại học Vũ Hán, tỉnh Hồ Bắc.Ủy ban Y tế Quốc gia Trung Quốc cho biết, riêng trong ngày 10/2, nước này ghi nhận thêm 108 ca tử vong vì virus corona, nâng tổng số người chết tại Trung Quốc lên 1.016 người. Số người nhiễm mới cũng tăng gần 2.500 người. Hầu hết các ca tử vong và nhiễm mới tập trung ở tâm dịch Hồ Bắc (103 ca tử vong). Trong ảnh: Bố của một bệnh nhân ngồi chờ bên ngoài phòng điều trị tại bệnh viện Zhongnan.Hai bệnh viện dã chiến quy mô lớn tại Vũ Hán là Lôi Thần Sơn và Hỏa Thần Sơn, lần lượt có sức chứa 1.600 và 1.000 giường bệnh, đã được hoàn thiện trong thời gian ngắn kỷ lục và bàn giao cho lực lượng quân y Trung Quốc. Trong khi đó, hàng loạt bệnh viện tạm, bệnh viện cabin cũng được thiết lập bên trong các tòa nhà hoặc khu thể thao, triển lãm, trung tâm văn hóa tại Vũ Hán để khắc phục tình trạng quá tải bệnh nhân.<p>',
+			date:'11/02/2019',
+			tacgia:'<b>Tác giả: Ngọc Lâm</b>'
+		}]
+
+		function showtrangchitiet(){
+			var out2=' ';
+			for(var i=0;i<chitiet.length;i++){
+				var chi_tiet=chitiet[i]
+				out2+='<div>'+chi_tiet.title+'</div>'
+				out2+='<div>'+chi_tiet.tomtat+'</div>'
+				out2+='<div>'+chi_tiet.img+'</div>'
+				out2+='<div>'+chi_tiet.noidung+'</div>'
+				out2+='<div id="gido">'
+				out2+='<div>'+chi_tiet.date+'</div>'
+				out2+='<div>'+chi_tiet.tacgia+'</div>'
+				out2+='</div>'
+			}
+			var trang_chitiet=document.getElementById('trangchitiet').innerHTML=out2;
+		}
+
+		document.addEventListener('DOMContentLoaded',function(){
+			showtrangchitiet()
+		})
+	</script>
+
+</head>
+<body>
+	<div>
+		<div class="banner">
+			<a href="duanweb.html" title="cơ quan trung ương đoàn TNCS Hồ Chí Minh">
+				<img src="images/logo.png">
+			</a>
+			<div class="seach">
+				<input type="text" placeholder="Tìm kiếm...">
+				<button type="button" id="button"><i class="fa fa-search"></i></button>
+			</div>
+		</div>
+		<div class="menu1">
+					<a href="duanweb.html"><button type="submit"><i class="fa fa-home"></i></button></a>
+					<a href="#">Videos</a>
+					<a href="#">Sự kiện</a>
+					<a href="#">Xã hội</a>
+					<a href="#">Thế giới</a>
+					<a href="#">Thể thao</a>
+					<a href="#">Giáo dục</a>
+					<a href="#">Kinh doanh</a>
+					<a href="#">Văn hóa</a>
+					<a href="#">Giải trí</a>
+					<a href="#">Du lịch</a>
+					<a href="#">Pháp luật</a>
+					<a href="#">Sức khỏe</a>
+					<a href="#">Tình yêu</a>	
+		</div>
+		<div id="trangchitiet"></div>
+	</div>
+
+</body>
+</html>

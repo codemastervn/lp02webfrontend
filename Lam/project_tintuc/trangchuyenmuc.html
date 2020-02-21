@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>trang chuyen muc</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="duanweb.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script>
+		var trang_cm=[
+		{
+			img:'<a href="#"><img src="https://i1-thethao.vnecdn.net/2020/02/11/843345232538652676455090836772-2354-1455-1581385227.jpg?w=500&h=300&q=100&dpr=1&fit=crop&s=vGR4JLQVMXivgOHPiw4y-Q"></a>',
+			title:'<a href="#">Công Phượng sổ lồng</a>',
+			tomtat: 'Trong bối cảnh các tiền đạo ngoại chấn thương, Công Phượng nhiều khả năng sẽ gánh vác hàng công của TP HCM ở trận ra quân AFC Cup gặp Yangon United chiều 11/2'
+		},
+		{
+			img:'<a href="#"><img src="https://i-thethao.vnecdn.net/2020/02/11/1581354375-563060-1581354591-n-1815-8170-1581384484.jpg"></a>',
+			title:'<a href="#">Nhà vô địch Grand Slam không bị phạt dù dương tính với doping</a>',
+			tomtat: 'Robert Farah, tay vợt từng vô địch đôi nam ở Wimbledon và Mỹ Mở rộng, không bị cấm thi đấu dù dương tính với doping cuối năm ngoái.'
+		},
+		{
+			img:'<a href="#"><img src="https://i1-thethao.vnecdn.net/2020/02/11/843345232538652676455090836772-2354-1455-1581385227.jpg?w=500&h=300&q=100&dpr=1&fit=crop&s=vGR4JLQVMXivgOHPiw4y-Q"></a>',
+			title:'<a href="#">Công Phượng sổ lồng</a>',
+			tomtat: 'Trong bối cảnh các tiền đạo ngoại chấn thương, Công Phượng nhiều khả năng sẽ gánh vác hàng công của TP HCM ở trận ra quân AFC Cup gặp Yangon United chiều 11/2'
+		},
+		]
+
+		function showtrangchuyenmuc(){
+			var out1=' ';
+			for(var i=0;i<trang_cm.length;i++){
+				trang_chuyen_muc = trang_cm[i];
+				out1+='<div id="thuxem" style="margin-left:50px;">'
+				out1+='<div>'+trang_chuyen_muc.img+'</div>';
+				out1+='<div id="title">'
+				out1+='<div><h4>'+trang_chuyen_muc.title+'</h4></div>';
+				out1+='<div>'+trang_chuyen_muc.tomtat+'</div>';
+				out1+='</div>';
+				out1+='</div>'
+			}
+			
+			var chuyenmuc=document.getElementById('trangchuyenmuc').innerHTML=out1;
+		}
+
+
+		document.addEventListener('DOMContentLoaded',function(){
+			showtrangchuyenmuc();
+		})
+	</script>
+</head>
+<body>
+	<body>
+	<div>
+		<div class="banner">
+			<a href="duanweb.html" title="cơ quan trung ương đoàn TNCS Hồ Chí Minh">
+				<img src="images/logo.png">
+			</a>
+			<div class="seach">
+				<input type="text" placeholder="Tìm kiếm...">
+				<button type="button" id="button"><i class="fa fa-search"></i></button>
+			</div>
+		</div>
+		<div class="menu1">
+					<a href="duanweb.html"><button type="submit"><i class="fa fa-home"></i></button></a>
+					<a href="#">Videos</a>
+					<a href="#">Sự kiện</a>
+					<a href="#">Xã hội</a>
+					<a href="#">Thế giới</a>
+					<a href="#" style="background: blue;">Thể thao</a>
+					<a href="#">Giáo dục</a>
+					<a href="#">Kinh doanh</a>
+					<a href="#">Văn hóa</a>
+					<a href="#">Giải trí</a>
+					<a href="#">Du lịch</a>
+					<a href="#">Pháp luật</a>
+					<a href="#">Sức khỏe</a>
+					<a href="#">Tình yêu</a>	
+		</div>
+		<div id="trangchuyenmuc">
+		</div>
+	</div>
+
+</body>
+</html>

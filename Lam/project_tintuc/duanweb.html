@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>website tin tức</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="duanweb.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- slide -->
+	<script>
+		var t=0;
+		var anh=[
+		{
+			hinhanh:'<img src="https://baoquocte.vn/stores/news_dataimages/thanhtruc/022020/10/19/in_article/cap-nhat-19h-ngay-102-ty-le-khoi-benh-do-virus-corona-o-trung-quoc-tang-manh-so-ca-nhiem-moi-tai-anh-tang-gap-doi-nga-dua-khau-trang-vao-dien-du-tru-chien-luoc.jpg">'
+		},
+		{
+			hinhanh:'<img src="https://vnn-imgs-f.vgcloud.vn/2019/06/15/09/ba-nguoi-dep-dong-au-gay-sot-khi-chup-anh-voi-sen.jpg">'
+		},
+		{
+			hinhanh:'<img src="https://trithucvn.net/wp-content/uploads/2020/02/dich-corona-vu-han-3.jpg">'
+		}]
+
+		function showslide(){
+			var out=' ';
+			for(var i=0;i<anh.length;i++){
+				out+='<div >'+anh.hinhanh+'</div>';
+			}
+			var slideanh='<a href="#" target="blank">'+anh[t].hinhanh+'<a>'
+			document.getElementById('anhslide').innerHTML=slideanh;
+		}
+
+		function trai2(){
+			t--;
+			if(t<0){
+				t=anh.length-1;
+			}
+			showslide();
+		}
+
+		function phai2(){
+			t++
+			if(t>anh.length-1){
+				t=0;
+			}
+			showslide();
+		}
+
+		document.addEventListener('DOMContentLoaded',function(){
+			showslide();
+		})
+	</script>
+
+	<!-- trangchu -->
+	<script>
+		var bainoibat=[
+			{
+				img: '<a title="Một công dân Mỹ chết ở Vũ Hán vì virus corona" target="blank" href="file:///C:/cygwin64/home/javascript/trangchitiet.html"><img title="Một công dân Mỹ chết ở Vũ Hán vì virus corona" alt="Một công dân Mỹ chết ở Vũ Hán vì virus corona" onload="t_image = new Date().getTime();" src="https://icdn.dantri.com.vn/zoom/654_490//2020/02/08/trung-quoc-ncov-2-1581143760556.jpg"></a>',
+				title: '<a title="Một công dân Mỹ chết ở Vũ Hán vì virus corona" target="blank" href="file:///C:/cygwin64/home/javascript/trangchitiet.html">Một công dân Mỹ chết ở Vũ Hán vì virus corona</a>',
+				cacbaidang:'&nbsp;- Một công dân Mỹ 60 tuổi được chẩn đoán nhiễm virus corona mới (nCoV) đã tử vong tại Vũ Hán ngày 6/2, đại sứ quán Mỹ tại Bắc Kinh cho biết.',
+				title_them:'<a title="Mỹ viện trợ 100 triệu USD cho Trung Quốc và các nước chống virus corona" target="blank" href="https://dantri.com.vn/the-gioi/my-vien-tro-100-trieu-usd-cho-trung-quoc-va-cac-nuoc-chong-virus-corona-20200208101241862.htm"> <b>&gt;&gt;Mỹ viện trợ 100 triệu USD cho Trung Quốc và các nước chống virus corona</b></a>',
+				title_them1:'<a title="Mỹ viện trợ 100 triệu USD cho Trung Quốc và các nước chống virus corona" target="blank" href="https://dantri.com.vn/the-gioi/my-vien-tro-100-trieu-usd-cho-trung-quoc-va-cac-nuoc-chong-virus-corona-20200208101241862.htm"> <b>&gt;&gt;Trung quốc họp khẩn về dịch corona đang lan rộng</b></a>',
+				title_them2:'<a title="Mỹ viện trợ 100 triệu USD cho Trung Quốc và các nước chống virus corona" target="blank" href="https://dantri.com.vn/the-gioi/my-vien-tro-100-trieu-usd-cho-trung-quoc-va-cac-nuoc-chong-virus-corona-20200208101241862.htm"> <b>&gt;&gt;Thế giới đang chống chọi với thảm họa</b></a>',
+			}];
+
+			function renderView1(){
+				var html1=' ';
+				for(var i=0;i<bainoibat.length;i++){
+					var bai=bainoibat[i];
+					html1+='<div class="bai_anh">'+bai.img+'</div>';
+					html1+='<div class="bai_title">'+bai.title+'</div>';
+					html1+='<div class="bai_cacbaidang">'+bai.cacbaidang+'</div>';
+					html1+='<div class="bai_them">'+bai.title_them+'</div>';
+					html1+='<div class="bai_them">'+bai.title_them1+'</div>';
+					html1+='<div class="bai_them">'+bai.title_them2+'</div>';
+				}
+				var bai_noi_bat=document.getElementById('bai_noibat');
+				bai_noi_bat.innerHTML=html1;
+			}
+		//langnghesukien
+		document.addEventListener('DOMContentLoaded',function(){
+			renderView1();
+		})
+	</script>
+	<script>
+		var sukiennoibat=[
+		{
+			title1:'<a href="/the-gioi/gia-dinh-bac-si-tu-vong-vi-virus-corona-duoc-boi-thuong-114000-usd-20200208185348409.htm">Gia đình bác sĩ tử vong vì virus corona được bồi thường 114.000 USD</a>',
+			title2:'<a href="/the-gioi/mot-cong-dan-my-chet-o-vu-han-vi-virus-corona-20200208133759339.htm">Một công nhân Mỹ chết ở Vũ Hán vì virut corona</a>',
+			title3:'<a href="/the-gioi/gia-dinh-bac-si-tu-vong-vi-virus-corona-duoc-boi-thuong-114000-usd-20200208185348409.htm">Gia đình bác sĩ tử vong vì virus corona được bồi thường 114.000 USD</a>',
+			title4:'<a href="/the-gioi/mot-cong-dan-my-chet-o-vu-han-vi-virus-corona-20200208133759339.htm">Khôi phục dần hoạt động qua lại tại các cửa khẩu với Trung Quốc</a>',
+			title5:'<a href="/the-gioi/mot-cong-dan-my-chet-o-vu-han-vi-virus-corona-20200208133759339.htm">Đội tuyển Việt Nam xếp số 1 Đông Nam Á, bỏ xa Thái Lan</a>',
+			title6:'<a href="/the-gioi/gia-dinh-bac-si-tu-vong-vi-virus-corona-duoc-boi-thuong-114000-usd-20200208185348409.htm">Gia đình bác sĩ tử vong vì virus corona được bồi thường 114.000 USD</a>',
+			title7:'<a href="/the-gioi/mot-cong-dan-my-chet-o-vu-han-vi-virus-corona-20200208133759339.htm">Bộ Công an thông tin tiếp vụ lừa đảo hơn 10.000 người bằng hình thức đa cấp</a>',
+			title8:'<a href="/the-gioi/mot-cong-dan-my-chet-o-vu-han-vi-virus-corona-20200208133759339.htm">Tỷ phú Trung Quốc xây 7 bệnh viện, thuê chuyên cơ “giải cứu” Vũ Hán</a>',
+			title9:'<a href="/the-gioi/mot-cong-dan-my-chet-o-vu-han-vi-virus-corona-20200208133759339.htm">Hà Nội: Đôi nam nữ vượt đèn đỏ, tông gục cảnh sát giao thông</a>',
+			title10:'<a href="/the-gioi/mot-cong-dan-my-chet-o-vu-han-vi-virus-corona-20200208133759339.htm">Giám đốc Sở GD&ĐT Hà Nội: Điều chỉnh lịch thi lớp 10 vì dịch Covid-19</a>',
+			title11:'<a href="/the-gioi/mot-cong-dan-my-chet-o-vu-han-vi-virus-corona-20200208133759339.htm">Gian nan đường về nhà của hành khách trên du thuyền cập cảng Campuchia</a>',
+			title12:'<a href="/the-gioi/mot-cong-dan-my-chet-o-vu-han-vi-virus-corona-20200208133759339.htm">Nhật Bản hứng chỉ trích vì 2 người chết, 600 ca nhiễm Covid-19 trên tàu</a>',
+			title13:'<a href="/the-gioi/mot-cong-dan-my-chet-o-vu-han-vi-virus-corona-20200208133759339.htm">Hàn Quốc ghi nhận ca tử vong đầu tiên vì nhiễm virus corona</a>',
+
+		}
+		];
+		function renderView2(){
+			var html2=' '
+			for(var i=0;i<sukiennoibat.length;i++){
+				var sukien = sukiennoibat[i];
+				html2+='<div class="tintuc_sukien">TIN TỨC-SỰ KIỆN</div>'
+				html2+='<ul>';
+				html2+='<li>'+sukien.title1+'</li>';
+				html2+='<li>'+sukien.title2+'</li>';
+				html2+='<li>'+sukien.title3+'</li>';
+				html2+='<li>'+sukien.title4+'</li>';
+				html2+='<li>'+sukien.title5+'</li>';
+				html2+='<li>'+sukien.title6+'</li>';
+				html2+='<li>'+sukien.title7+'</li>';
+				html2+='<li>'+sukien.title8+'</li>';
+				html2+='<li>'+sukien.title9+'</li>';
+				html2+='<li>'+sukien.title10+'</li>';
+				html2+='<li>'+sukien.title11+'</li>';
+				html2+='<li>'+sukien.title12+'</li>';
+				html2+='<li>'+sukien.title13+'</li>';
+
+
+				html2+='</ul>'
+			}
+			var su_kien=document.getElementById('sukien_noibat');
+			su_kien.innerHTML=html2;
+		};
+		document.addEventListener('DOMContentLoaded',function(){
+			renderView2();
+		});
+	</script>
+	<script>
+		var tinnoibat=[
+		{
+			img:'<a href="https://dantri.com.vn/" target="blank"> <img src="https://icdn.dantri.com.vn/zoom/188_158//2020/02/08/trung-quoc-ncov-2-1581143760556.jpg"></a>',
+			title:'<a href="https://dantri.com.vn/" target="blank">Du thuyền nhật bản trở thành ổ dịch nCoV lớn nhất bên ngoài Trung Quốc</a>'
+		},
+		{
+			img:'<a href="https://dantri.com.vn/" target="blank"> <img src="https://icdn.dantri.com.vn/zoom/188_158//2020/02/08/trung-quoc-ncov-2-1581143760556.jpg"></a>',
+			title:'<a href="https://dantri.com.vn/" target="blank">Xu hướng thời trang xuân hè 2020 và sự phát triển tại Việt Nam</a>'
+		},
+		{
+			img:'<a href="https://dantri.com.vn/" target="blank"> <img src="https://icdn.dantri.com.vn/zoom/188_158//2020/02/08/trung-quoc-ncov-2-1581143760556.jpg"></a>',
+			title:'<a href="https://dantri.com.vn/" target="blank">Ăn nhiều cam cung cấp nhiều vitamin C</a>'
+		},
+		{
+			img:'<a href="https://dantri.com.vn/" target="blank"> <img src="https://icdn.dantri.com.vn/zoom/188_158//2020/02/08/trung-quoc-ncov-2-1581143760556.jpg"></a>',
+			title:'<a href="https://dantri.com.vn/" target="blank">Chanh rất tốt cho sức khỏe</a>'
+		},
+		{
+			img:'<a href="https://dantri.com.vn/" target="blank"> <img src="https://icdn.dantri.com.vn/zoom/188_158//2020/02/08/trung-quoc-ncov-2-1581143760556.jpg"></a>',
+			title:'<a href="https://dantri.com.vn/" target="blank">Một bộ phim về minion vừa được công chiếu</a>'
+		},
+		];
+		//renderView
+		function renderView(){
+			var html=' ';
+			for(var i=0;i<tinnoibat.length;i++){
+				var tin=tinnoibat[i];
+				html+='<div class="chung">';
+				html+='<div id="anh">'+tin.img+'</div>';
+				html+='<div id="title"><a>'+tin.title+'</a></div>';
+				html+='</div>';
+			}
+			// console.log(html)
+			var render=document.getElementById('tin_noibat');
+			render.innerHTML=html;
+		}
+		//langnghesukien
+		document.addEventListener('DOMContentLoaded',function(){
+			renderView();
+		});
+	</script>
+
+	<!-- thanhchuyenmuc -->
+	<script>
+		var thanhchuyenmuc=[
+		{
+			chuyenmuc1:'<a href="#">THỂ THAO</a>',
+			chuyenmuc2:'<a href="#">Trong nước</a>',
+			chuyenmuc3:'<a href="#">Nước ngoài</a>'
+		},]
+		function showchuyenmuc(){
+			var html7=' ';
+			for(var i=0;i<thanhchuyenmuc.length;i++){
+				var thanh_cm=thanhchuyenmuc[i];
+				html7+='<div id="tcm1">'+thanh_cm.chuyenmuc1+'</div>'
+				html7+='<div id="tcm2">'+thanh_cm.chuyenmuc2+'</div>'
+				html7+='<div id="tcm3">'+thanh_cm.chuyenmuc3+'</div>'
+			}
+			var thanh_chuyen_muc=document.getElementById('thanh_chuyenmuc').innerHTML=html7;
+		}
+		document.addEventListener('DOMContentLoaded',function(){
+			showchuyenmuc();
+		});
+	</script>
+	<!-- noidungchuyenmuc -->
+	<script>
+		var noidungchuyenmuc=[
+		{
+			img:'<a href="#"><img src="https://i1-thethao.vnecdn.net/2020/02/11/843345232538652676455090836772-2354-1455-1581385227.jpg?w=500&h=300&q=100&dpr=1&fit=crop&s=vGR4JLQVMXivgOHPiw4y-Q"></a>',
+			title:'<a href="#">Công Phượng đá chính</a>',
+			tomtat:'Đầu mùa giải Công Phượng đã gặt hái nhiều thành công trong màu áo của đội tuyển quốc gia'
+		},
+		];
+		function shownoidungchuyenmuc(){
+			var html8=' ';
+			for(var i=0;i<noidungchuyenmuc.length;i++){
+				var noidung_cm= noidungchuyenmuc[i]
+				html8+='<div>'+noidung_cm.img+'</div>'
+				html8+='<div id="title_ndcm">'
+				html8+='<div><h4>'+noidung_cm.title+'</h4><div>'
+				html8+='<div>'+noidung_cm.tomtat+'<div>'
+				html8+='</div>'
+			}
+			var noidungcm =document.getElementById('noidung_chuyenmuc').innerHTML=html8;
+		}
+		document.addEventListener('DOMContentLoaded',function(){
+			shownoidungchuyenmuc();
+		});
+	</script>
+	<!-- tinchuyenmuc -->
+	<script>
+		var tinchuyenmuc=[
+		{
+			title1:'1. <a href="#">Đội tuyển Việt Nam chốt địa điểm đá giao hữu với Iraq</a>',
+			title2:'2. <a href="#">Huấn luyện viên Zakaloko</a>',
+			title3:'3. <a href="#">Cầu thủ ngoại hạng Anh bê bối scandan</a>'
+		}]
+		function showtinchuyenmuc(){
+			var html9=' '
+			for(var i=0;i<tinchuyenmuc.length;i++){
+				var tin_cm = tinchuyenmuc[i]
+				html9+='<ul>'
+				html9+='<a>'+tin_cm.title1+'</a>'+'<br>'
+				html9+='<a>'+tin_cm.title2+'</a>'+'<br>'
+				html9+='<a>'+tin_cm.title3+'</a>'
+			}
+			var tincm = document.getElementById('tin_chuyenmuc').innerHTML=html9
+		}
+			document.addEventListener('DOMContentLoaded',function(){
+				showtinchuyenmuc();
+			});
+
+	</script>
+
+	<!-- thongtinlienhe -->
+	<script>
+		var thong_tins=[
+		{
+			sohuu:'Bản quyền thuộc báo điện tử Tiền Phong',
+			diachi:'<h4>Địa chỉ:</h4> 15 Hồ Xuân Hương, Hà Nội',
+			sdt:'<h4>SĐT:</h4> 0349.792.885',
+			hotline:'<h4>Hotline:</h4> 0349.792.885',
+			email:'<h4>Email:</h4><a href="#">online@baotienphong.com.vn</a>',
+			title:'Mọi hành động sử dụng nội dung đăng tải trên Báo điện tử Tiền Phong tại địa chỉ www.TienPhong.vn phải có sự đồng ý bằng văn bản của Báo điện tử Tiền Phong.',
+		}];
+
+		function renderView4(){
+			var html4 = ' ';
+			for(var i=0;i<thong_tins.length;i++){
+			var	thong_tin = thong_tins[i];
+			html4 +='<ul>';
+			html4 +='<li><h4>'+thong_tin.sohuu+'</h4><li>';
+			html4 +='<li>'+thong_tin.diachi+'<li>';
+			html4 +='<li>'+thong_tin.sdt+'<li>';
+			html4 +='<li>'+thong_tin.hotline+'<li>';
+			html4 +='<li>'+thong_tin.email+'<li>';
+			html4 +='<li>'+thong_tin.title+'<li>';
+			html4 +='<div id="xemchitiet"><a href="file:///C:/cygwin64/home/javascript/trangthongtinlienhe.html" target="blank">XEM CHI TIẾT</a></div>'
+			html4 +='</ul>';
+			}
+			var thongtin_lh=document.getElementById('tt_lienhe');
+			thongtin_lh.innerHTML=html4;
+		};	
+		document.addEventListener('DOMContentLoaded',function(){
+			renderView4();
+		});
+	</script>
+
+	<script>
+		var lien_hes=[
+		{
+			dvqc:'<h4>Đơn vị quảng cáo:</h4> LNLproMedia',
+			diachi:'<h4>Địa chỉ:</h4> 90 Láng Hạ, Hà Nội',
+			sdt:'<h4>SĐT:</h4> 0965.256.258',
+			email:'<h4>Email:</h4><a href="#">quangcaomedia.com.vn</a>',
+		}];
+
+		function renderView5(){
+			var html5 = ' ';
+			for(var i=0;i<lien_hes.length;i++){
+			var	lien_he=lien_hes[i];
+			html5 +='<ul>';
+			html5 +='<li>'+lien_he.dvqc+'<li>';
+			html5 +='<li>'+lien_he.diachi+'<li>';
+			html5 +='<li>'+lien_he.sdt+'<li>';
+			html5 +='<li>'+lien_he.email+'<li>';
+			html5 +='</ul>';
+			}
+			var thongtin_nguoipt=document.getElementById('tt_nguoiphattrien');
+			thongtin_nguoipt.innerHTML=html5;
+		};	
+		document.addEventListener('DOMContentLoaded',function(){
+			renderView5();
+		});
+	</script>
+
+	<!-- lichthang -->
+		<script>
+		var t=2;
+		var sukien=[1,2,3,4]
+		var dates=[
+		{
+			t2:'Mo',
+			t3:'Tu',
+			t4:'We',
+			t5:'Th',
+			t6:'Fr',
+			t7:'Sa',
+			cn:'Su',
+		}]
+		 function calendar(nam,thang){
+		 	var ngayhientai = new Date();
+
+		 	var date = new Date();
+		 	date.setFullYear(nam, thang-1,);
+		 	var day=date.getDate();
+		 	var month=date.getMonth();
+		 	var year=date.getFullYear();
+		 	var ngay_1_thangnay= new Date(year,month,1); console.log(ngay_1_thangnay)
+		 	var ngay_1_thangsau=new Date(year,month+1,1); console.log(ngay_1_thangsau)
+
+			// xem ngày đầu tiên của tháng này thứ mấy(0-6)
+			var ngay_dautien_thangnay=ngay_1_thangnay.getDay(); console.log(ngay_dautien_thangnay)
+			// xem ngày đầu tiên của tháng sau là thứ mấy
+			var ngay_dautien_thangsau= ngay_1_thangsau.getDay(); console.log(ngay_dautien_thangsau)
+
+			// xem tháng có bao nhiêu ngày
+			var tong_so_ngay=Math.round((ngay_1_thangsau.getTime() - ngay_1_thangnay.getTime())/(24*60*60*1000)); console.log(tong_so_ngay)
+
+
+			var out=' ';
+
+			out+='<div id="t2">'+'Tháng '+(month+1)+' / '+year+'</div>'
+			out+='<div id="thumay">'
+			for(var i=0;i<dates.length;i++){
+				var thu=dates[i];
+				out+='<ul>'
+				out+='<li>'+thu.cn+'</li>'
+				out+='<li>'+thu.t2+'</li>'
+				out+='<li>'+thu.t3+'</li>'
+				out+='<li>'+thu.t4+'</li>'
+				out+='<li>'+thu.t5+'</li>'
+				out+='<li>'+thu.t6+'</li>'
+				out+='<li>'+thu.t7+'</li>'
+				out+='</ul>'
+			}
+			out+='</div>'
+			out+='<div id="prev"><input type="button" onclick="trai1()" value="<<"></div>'
+			out+='<div id="next"><input type="button" onclick="phai1()" value=">>"></div><br>'
+			
+			out+='<table id="ngaymay"><tr>'
+				for(var i=1;i<=ngay_dautien_thangnay;i++){
+					out+='<td>'+'-'+'</td>'
+				}
+				for(var i=1;i<=tong_so_ngay;i++){
+					if(day==i&& thang-1 == ngayhientai.getMonth()){
+						out+='<td id="boiden"><b>'+i+'</b></td>'
+					}
+					else{
+						out+='<td>'+i+'</td>'
+					}
+					if((i+ngay_dautien_thangnay)%7==0){
+						out+='<tr></tr>';
+					}
+				}
+			out+='</table>';
+			out+='<div id="lichcanam"><a href="file:///C:/cygwin64/home/javascript/lichnam.html" target="blank">xem lịch năm</a></div>'
+			document.getElementById('thang1').innerHTML=out;
+		}
+
+		function trai1(){
+			if(t>1){
+				t=t-1
+			calendar(2020,t)
+			}
+			else{
+				calendar(2020,t)
+			}
+		}
+
+		function phai1(){
+			if(t>=1){
+				t=t+1
+				calendar(2020,t)
+			}
+		}
+
+		 document.addEventListener('DOMContentLoaded',function(){
+		 	calendar(2020,t)
+		 })
+	</script>
+
+	
+</head>
+<body>
+	<div class="content">
+		<div class="banner">
+			<a href="duanweb.html" title="cơ quan trung ương đoàn TNCS Hồ Chí Minh">
+				<img src="images/logo.png">
+			</a>
+			<div class="seach">
+				<input type="text" placeholder="Tìm kiếm...">
+				<button type="button" id="button"><i class="fa fa-search"></i></button>
+			</div>
+		</div>
+		<div class="menu1">
+					<a href="duanweb.html"><button type="submit"><i class="fa fa-home"></i></button></a>
+					<a href="#">Videos</a>
+					<a href="#">Sự kiện</a>
+					<a href="#">Xã hội</a>
+					<a href="#">Thế giới</a>
+					<a href="file:///C:/cygwin64/home/javascript/trangchuyenmuc.html" target="blank">Thể thao</a>
+					<a href="#">Giáo dục</a>
+					<a href="#">Kinh doanh</a>
+					<a href="#">Văn hóa</a>
+					<a href="#">Giải trí</a>
+					<a href="#">Du lịch</a>
+					<a href="#">Pháp luật</a>
+					<a href="#">Sức khỏe</a>
+					<a href="#">Tình yêu</a>	
+		</div>
+		<div class="noidung">
+			<div class="box1">
+				<div class="slide">
+					<div class="noi"><input type="button" onclick="trai2()" value="<<"></div>
+					<div id="anhslide"></div>
+					<div class="noi1"><input type="button" onclick="phai2()" value=">>"></div>
+				</div>
+				<div class="trangchu">
+					<div id="bai_noibat"></div>
+					<div id="sukien_noibat"></div>
+				</div>
+				<div id="tin_noibat">tinnoibat</div>
+			</div>
+
+			<div class="box2">
+				<div class="chuyenmuc">
+					<div id="thanh_chuyenmuc"></div>
+					<div id="noidung_chuyenmuc"></div>
+					<div id="tin_chuyenmuc"></div>
+				</div>
+				<div id="thang1"></div>
+			</div>	
+		</div>
+		<div class="footer">
+			<div class="thongtin">
+				<div id="tt_lienhe"></div>
+				<div id="tt_nguoiphattrien"></div>
+			</div>
+		</div>	
+	</div>
+
+</body>
+</html>

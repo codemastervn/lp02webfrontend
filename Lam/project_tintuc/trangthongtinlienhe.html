@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>trang thông tin liên hệ</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="duanweb.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script>
+		var trangttlienhe=[
+		{
+			sohuu:'<b>Bản quyền thuộc báo điện tử Tiền Phong</b>',
+			diachi:'<b>Địa chỉ:</b> 15 Hồ Xuân Hương, Hà Nội',
+			sdt:'<b>SĐT:</b> 0349.792.885',
+			email:'<b>Email:</b> online@baotienphong.com.vn',
+			google:'<b>googlemap:</b><a href="https://www.google.com/maps/place/Tr%E1%BA%A7n+Ho%C3%A0nh,+Khu%C3%AA+M%E1%BB%B9,+Ng%C5%A9+H%C3%A0nh+S%C6%A1n,+%C4%90%C3%A0+N%E1%BA%B5ng,+Vi%E1%BB%87t+Nam/@16.0252897,108.2452971,17z/data=!3m1!4b1!4m5!3m4!1s0x314217505297df5b:0x9c429d2a0768e7ae!8m2!3d16.0251854!4d108.2474829?hl=vi-VN" target="blank">Xem googlemap</a>'
+		}]
+
+		var guiyeucau=[
+		{
+			ten:'',
+			email:'',
+			sdt:'',
+			chude:'',
+			noidung:''
+
+		}]
+
+		function showformyc(){
+			var out4=''
+			for(var i=0;i<guiyeucau.length;i++){
+				var gui_yeucau=guiyeucau[i]
+				out4+='<ul>'
+				out4+='<li>'+gui_yeucau.ten+'</li>'
+				out4+='<li>'+gui_yeucau.email+'</li>'
+				out4+='<li>'+gui_yeucau.sdt+'</li>'
+				out4+='<li>'+gui_yeucau.chude+'</li>'
+				out4+='<li>'+gui_yeucau.noidung+'</li>'
+				out4+='</ul>'
+			}
+			var inra=document.getElementById('danhsach').innerHTML=out4
+		}
+
+		function showtranglienhe(){
+			var out3=' '
+			for(var i=0;i<trangttlienhe.length;i++){
+				var trang_lienhe = trangttlienhe[i]
+				out3+='<div id="tt">'
+				out3+='<h3>Liên hệ quảng cáo:</h3>'
+				out3+='<p>'+trang_lienhe.sohuu+'</p>'
+				out3+='<p>'+trang_lienhe.diachi+'</p>'
+				out3+='<p>'+trang_lienhe.sdt+'</p>'
+				out3+='<p>'+trang_lienhe.email+'</p>'
+				out3+='<p>'+trang_lienhe.google+'</p>'
+				out3+='</div>'
+				out3+='<h3>Gửi liên hệ:</h3>'
+				out3+='<input type="text" id="ten" placeholder="Họ tên">'+'<br>'
+				out3+='<input type="text" id="email" placeholder="email">'+'<br>'
+				out3+='<input type="text" id="sdt" placeholder="SĐT">'+'<br>'
+				out3+='<input type="text" id="chude" placeholder="chủ để">'+'<br>'
+				out3+='<input type="text" id="noidung" placeholder="Nội dung liên hệ...">'+'<br>'
+				out3+='<input type="button" value="Gửi" onclick="them()">'
+				out3+='<div id="danhsach"></div>'
+			}
+			var trang_lien_he=document.getElementById('tranglienhe').innerHTML=out3
+		}
+
+		function them(){
+			var thongtin={
+			ten:document.getElementById('ten').value,
+			email:document.getElementById('email').value,
+			sdt:document.getElementById('sdt').value,
+			chude:document.getElementById('chude').value,
+			noidung:document.getElementById('noidung').value
+			}
+			guiyeucau.push(thongtin);
+			showformyc();
+			console.log(thongtin)
+			alert('Nội dung đã được gửi. Cám ơn bạn đã liên hệ với chúng tôi !')
+		}
+
+		document.addEventListener('DOMContentLoaded',function(){
+			showtranglienhe();
+			showformyc()
+		})
+	</script>
+</head>
+<body>
+	<div id="tranglienhe"></div>
+</body>
+</html>
