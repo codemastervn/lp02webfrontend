@@ -258,14 +258,21 @@
 			document.getElementById("div1").innerHTML = out;
 		}
 		danhmuc1();
+		function showNavArrow(val) {
+			document.getElementById("prev").style.opacity = val;
+			document.getElementById("next1").style.opacity = val;
+
+		}
+
+		
 		function danhmuc2(){
 
 			var out="<table id='table2'><tr>";
-			out+="<td id='td1_2'><img src='images/"+dsha[l-1].h+"' id='h1'></td>";
+			out+="<td id='td1_2' onmouseover='showNavArrow(0.4)' onmouseout='showNavArrow(0)'><img src='images/"+dsha[l-1].h+"' id='h1'></td>";
 			out+="<td id='td2_2'><img src='images/hr.PNG' id='h2'></td>";
 			out+="</tr></table>";
-			out+="<img src='images/prev.PNG' id='prev' onclick='prev()'>";
-			out+="<img src='images/next1.PNG' id='next1' onclick='next()'>";
+			out+="<img onmouseover='showNavArrow(1)' src='images/prev.PNG' id='prev' onclick='prev()'>";
+			out+="<img onmouseover='showNavArrow(1)' src='images/next1.PNG' id='next1' onclick='next()'>";
 			document.getElementById("div2").innerHTML = out;
 		}
 		danhmuc2(); 
@@ -325,10 +332,11 @@
 			out+="<td class='td'><input type='checkbox'>Mới</td>";
 			out+="<td class='td'><input type='checkbox'>Trả góp &#37;</td>";
 			out+="<td class='td'><input type='checkbox'>Độc quyền</td>";
-			out+="<td class='td'>Tính năng<div id='tinhnang'><select>";
-			out+="<option>Nổi bậc nhất</option>";
-			out+="<option>Giá cao đến giá thấp</option>";
-			out+="<option>Giá thấp đến giá cao</option>";
+			out+="<td class='td'>Tính năng<div id='tinhnang'>";
+			out+="<select onchange=sapxep(this.value)>";
+			out+="<option value='nb'>Nổi bậc nhất</option>";
+			out+="<option value='cao'>Giá cao đến giá thấp</option>";
+			out+="<option value='thap'>Giá thấp đến giá cao</option>";
 			out+="</select></div></td>";
 			out+="<td class='td'>Sắp xếp</td>";
 			out+="</tr></table>";
@@ -392,6 +400,26 @@
 			out+="<div id='div4_7'><img src='images/logo.jpg' id='hlg'></div></div>"
 			document.getElementById("div7").innerHTML=out;
 		}
+		function sapxep(value)
+		{
+			console.log(value);
+			if (value == 'cao'){
+				dsdt.sort(function(a,b){
+					return(b.gia-a.gia);
+				})
+			}
+			else{
+				dsdt.sort(function(a,b){
+					return(a.gia-b.gia);
+				})
+			}
+				
+			
+
+			danhmuc_dt(dsdt);
+		}
+		
+		
 		function loc2(){
 			for (var i = 0; i <copy2.length; i++) {
 				if(copy2[i].gia<7000000 || copy2[i].gia>15000000)
