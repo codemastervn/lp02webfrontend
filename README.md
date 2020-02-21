@@ -1,2 +1,2 @@
-# lp06webfrontend
+# LP06 Web FrontEnd
 LP06 Web FrontEnd
