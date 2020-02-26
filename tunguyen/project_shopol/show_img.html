@@ -47,6 +47,14 @@
 						$("#next").click()
 					},2000);
 			});
+			$(".image").mouseenter(function(){
+				$("#next").css("display","block");
+				$("#prev").css("display","block");
+			});
+			$(".image").mouseleave(function(){
+				$("#next").css("display","none");
+				$("#prev").css("display","none");
+			});
 		});
 	</script>
 </head>

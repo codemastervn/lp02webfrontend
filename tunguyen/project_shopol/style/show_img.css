@@ -13,12 +13,14 @@
 #prev{
 	position: absolute;
 	top: 170px;
-	left: 410px;
+	left: 475px;
+	display: none;
 }
 #next{
 	position: absolute;
 	top: 170px;
-	right: 410px;
+	right: 475px;
+	display: none;
 }
 #start{
 	position: absolute;
