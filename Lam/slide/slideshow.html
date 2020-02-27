@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>slide show</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="slideshow.css">
+	<script>
+
+		var batdau;
+		var t=1;
+		$(document).ready(function(){
+			$("#sta").click(function(){
+			batdau = setInterval(function(){
+						$(".slides").animate({"margin-left":"-=720px"},1000,function(){
+							t++;
+							if(t === $(".slide").length){
+								t=1;
+								$(".slides").css("margin-left",0);
+							}
+						});
+					},3000);
+			})
+
+			$("#sto").click(function(){
+				clearInterval(batdau);
+			})
+		})
+	</script>
+
+
+</head>
+<body>
+	<input type="button" value="start" id="sta">
+	<input type="button" value="stop" id="sto">
+
+	<div id="slider">
+		<ul class="slides">
+			<li class="slide"><img  src="image\anhbai2.jpg"><b>người mẫu</b></li>
+			<li class="slide"><img  src="image\anhbai3.jpg"><b>quả cam</b></li>
+			<li class="slide"><img  src="image\anhbai32.jpg"><b>quả chanh</b></li>
+			<li class="slide"><img  src="image\anhbai33.jpg"><b>quả gì</b></li>
+			<li class="slide"><img  src="image\anhbai34.jpg"><b>quả dưa hấu</b></li>
+			<li class="slide"><img  src="image\anhbao1.jpg"><b>trung quốc</b></li>
+		</ul>	
+	</div>
+
+
+</body>
+</html>
