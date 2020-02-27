@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery_quản lý sinh viên</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style/qlsv_jquery.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#btnThem").click(function(){
+				if($("#id_form").valid()){
+					them();
+				}
+			});
+			$("#id_form").validate({
+				rules:
+				{
+					ho:{ required:true, minlength:3},
+					ten:{ required:true},
+					gioitinh:{ required:true},
+					dlt:{ required:true, number: true, range: [0,10]},
+					dth:{ required:true, number: true, range: [0,10]},
+
+				},
+				messages:
+				{
+					ho:{ required: " hãy nhập họ", minlength:"ít nhất 3 kí tự"},
+					ten:{ required: "hãy nhập tên"},
+					gioitinh:{required: "hãy chọn giới tính"},
+					dlt:{required:"hãy nhập điểm",number:"điểm là số thực",range:"0-10 điểm"},
+					dth:{required:"hãy nhập điểm",number:"điểm là số thực",range:"0-10 điểm"},
+				},
+				errorLabelContainer:"#myerror",
+				wrapper:"li"
+
+			});
+			$("#dshsg").click(function(){
+				loc_hsg();
+				$("#xoa").each(function(){
+					if($(this).is(':visible'))
+					{
+						$("#xoa").remove();
+					}
+				});
+				$(".Giỏi").css("color","yellow");
+				$(".Giỏi:odd").css("background-color","green");
+
+			});
+			$("#dshsy").click(function(){
+				loc_hsy();
+				$("#xoa").remove();
+				$(".Yếu").css("color","red");
+				$(".Yếu:even").css("background-color","#adadad");
+			});
+			$("#dshs").click(function(){
+				ht_dssv(dssv);
+			});
+			
+		});
+	</script>
+</head>
+<body>
+	<div id="myerror"></div>
+	<form id="id_form">
+		<fieldset id="id_fieldset">
+			<legend>Student Form</legend>
+			<table>
+				<tr>
+					<td>Họ đệm: </td>
+					<td><input type="text" id="ho" name="ho" placeholder="Nhập họ"></td>
+				</tr>
+				<tr>
+					<td>Tên: </td>
+					<td><input type="text" id="ten" name="ten" ></td>
+				</tr>
+				<tr>
+					<td>Năm sinh:</td>
+					<td>
+						<div id="chonnamsinh"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>Giới tính: </td>
+					<td>
+						<input type="radio" id="gt2" value="Nữ" name="gioitinh" > Nữ
+						<input type="radio" id="gt1" value="Nam" name="gioitinh" > Nam
+						
+					</td>
+				</tr>
+				<tr>
+					<td>Điểm lý thuyết:</td>
+					<td><input type="text" id="dlt" name="dlt"></td>
+				</tr>
+				<tr>
+					<td>Điểm thực hành:</td>
+					<td><input type="text" id="dth" name="dth"></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="background-color: #E5E5E5"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="button" value="Thêm" id="btnThem">
+						<input type="button" onclick="capnhat()" value="Cập nhật">
+						<input type="button" onclick="xoa()" value="Xóa">
+						&emsp;&emsp;&emsp;
+						Sắp xếp:
+						<input type="button" onclick="sx_ten()" value="Tên">
+						<input type="button" onclick="sx_diem()" value="Điểm">
+					</td>
+
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="button" value="DSHSG" id="dshsg">
+						<input type="button" value="DSHSY" id="dshsy">
+						<input type="button" value="DSHS" id="dshs">
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+	
+	<div id="content"></div>
+	<script type="text/javascript">
+		var dssv = [
+			{
+				hodem: "Nguyễn Văn",
+				ten: "Tư",
+				ns: 1996,
+				gt: "Nam",
+				dlt: 9,
+				dth: 8,
+			},
+			{
+				hodem: "Nguyễn Văn",
+				ten: "Năm",
+				ns: 1996,
+				gt: "Nam",
+				dlt: 9.6,
+				dth: 7,
+			},
+			{
+				hodem: "Nguyễn Văn",
+				ten: "Sáu",
+				ns: 1996,
+				gt: "Nam",
+				dlt: 9,
+				dth: 6,
+			},
+			{
+				hodem: "Nguyễn Văn",
+				ten: "Bảy",
+				ns: 1996,
+				gt:"Nam",
+				dlt: 9,
+				dth: 5,
+			},
+		];
+
+		// var copy1 = JSON.parse(JSON.stringify(dssv));
+		// sessionStorage.setItem("dssv1",JSON.stringify(copy1));
+		// var copy2 = JSON.parse(JSON.stringify(dssv));
+		sessionStorage.setItem("copy",JSON.stringify(dssv));
+		function ht_dssv(dssv){
+			var date = new Date();
+			var year = date.getFullYear();
+			var output = "<table id='table'>";
+			output+="<tr><th>STT</th><th>Họ và tên</th><th>Giới tính</th><th>Tuổi</th><th>Điểm lý thuyết</th><th>Điểm thực hành</th><th>Điểm TB</th><th>Xếp loại</th><th>Action</th></tr>"
+			for (var i = 0; i < dssv.length; i++)
+			{
+				var dtb = (dssv[i].dlt + dssv[i].dth)/2;
+				output+="<tr class='"+xeploai(dtb)+"' onclick='sua("+i+")'><td>" + (i + 1)+
+				"</td><td>" + dssv[i].hodem +  " " + dssv[i].ten +
+				"</td><td>" + dssv[i].gt +
+				"</td><td class='td1'>" +(year - dssv[i].ns)+
+				"</td><td class='td1'>" + dssv[i].dlt +
+				"</td><td class='td1'>" + dssv[i].dth +
+				"</td><td class='td1'>" + dtb +
+				"</td><td>" + xeploai(dtb) +
+				"</td><td>" + "<input id='xoa' type='button' onclick='xoa_ds("+i+")' value='Xóa'>" +
+				"</td></tr>"
+			}
+			output+="</table>";
+			document.getElementById("content").innerHTML = output;
+		}
+		ht_dssv(dssv);
+
+		function xeploai(dtb){
+			var xl;
+			if(dtb<5)
+			{
+				xl = "Yếu";
+			}
+			else if(dtb<6.5)
+			{
+				xl="Trung bình";
+			}
+			else if(dtb<8)
+			{
+				xl="Khá";
+			}
+			else
+			{
+				xl="Giỏi";
+			}
+			return xl;
+		}
+		function loaiClass(dtb){
+			var xl;
+			if(dtb<5)
+			{
+				xl = "yeu";
+			}
+			else if(dtb<6.5)
+			{
+				xl="";
+			}
+			else if(dtb<8)
+			{
+				xl="Khá";
+			}
+			else
+			{
+				xl="Giỏi";
+			}
+			return xl;
+		}
+		function hamchonnamsinh()
+		{
+			var date = new Date();
+			var year = date.getFullYear();
+			var min = year - 25;
+			var max = year - 10;
+			var optionNS = '<select id="tuoi">';
+			for (var i = min; i <= max; i++) 
+			{
+				optionNS += '<option>' + i + '</option>';
+			}
+			optionNS += '</select>';
+			document.getElementById("chonnamsinh").innerHTML = optionNS;
+		}
+		hamchonnamsinh();
+
+
+
+		function them()
+		{
+			var date=new Date();
+			var year = date.getFullYear();
+			var check;
+			var kt = document.getElementById("gt2").checked;
+			if(kt)
+			{
+				check = document.getElementById("gt2").value;
+			}
+			else
+				check = document.getElementById("gt1").value;
+			var them_sv ={
+				hodem: document.getElementById("ho").value,
+				ten: document.getElementById("ten").value,
+				ns: document.getElementById("tuoi").value,
+				gt: check,
+				dlt: document.getElementById("dlt").value*1,
+				dth: document.getElementById("dth").value*1,
+			};
+			dssv.push(them_sv);
+			sessionStorage.setItem("copy",JSON.stringify(dssv));
+			ht_dssv(dssv);
+		}
+		function loc_hsg(){
+			var copy1=JSON.parse(sessionStorage.getItem("copy"));
+			for (var i = 0; i <copy1.length; i++) 
+			{
+				var dtb = (copy1[i].dlt + copy1[i].dth)/2;
+				if(dtb<8)
+				{
+					copy1.splice(i,1);
+					i=i-1
+				}
+				ht_dssv(copy1);
+			}			
+		}
+		function loc_hsy(){
+			var copy2=JSON.parse(sessionStorage.getItem("copy"));
+			for (var i = 0; i <copy2.length; i++) 
+			{
+				var dtb = (copy2[i].dlt + copy2[i].dth)/2;
+				if(dtb>4)
+				{
+					copy2.splice(i,1)
+					i=i-1;
+				}
+				ht_dssv(copy2);
+			}
+		}
+		function xoa_ds(i){
+			dssv.splice(i, 1);
+			sessionStorage.setItem("copy",JSON.stringify(dssv));
+			ht_dssv(dssv);
+		}
+		function sua(i){
+			document.getElementById("ho").value = dssv[i].hodem;
+			document.getElementById("ten").value = dssv[i].ten;
+			document.getElementById("tuoi").value = dssv[i].ns;
+			document.getElementById("dlt").value = dssv[i].dlt;
+			document.getElementById("dth").value = dssv[i].dth;
+
+			if(dssv[i].gt == 'Nam')
+			{
+				document.getElementById("gt1").checked = true;
+			}
+			else
+				document.getElementById("gt2").checked = true;
+			vitri=i;
+			ht_dssv();
+		}
+		function capnhat()
+		{
+			var date=new Date();
+			var year = date.getFullYear();
+			var check;
+			var kt = document.getElementById("gt2").checked;
+			if(kt)
+			{
+				check = document.getElementById("gt2").value;
+			}
+			else
+				check = document.getElementById("gt1").value;
+			var them_sv ={
+				hodem: document.getElementById("ho").value,
+				ten: document.getElementById("ten").value,
+				ns: document.getElementById("tuoi").value,
+				gt: check,
+				dlt: document.getElementById("dlt").value*1,
+				dth: document.getElementById("dth").value*1,
+			};
+			dssv[vitri] = them_sv;
+			ht_dssv();
+		}
+		function sx_diem(){
+			dssv.sort(function(a, b){
+				return ((a.dlt+a.dth)/2)-((b.dlt+b.dth)/2);
+			});
+			ht_dssv(dssv);
+		}
+		function sx_ten(){
+			dssv.sort(function(a, b){
+				var n1 = a.ten.toLowerCase();
+				var n2 = b.ten.toLowerCase();
+				if(n1<n2){
+					return -1;
+				}
+				if(n1>n2){
+					return 1;
+				}
+				return 0;
+
+			});
+			ht_dssv(dssv);
+		}
+		function xoa(){
+			document.getElementById("ho").value ="";
+			document.getElementById("ten").value ="";
+			document.getElementById("tuoi").value ="";
+			document.getElementById("dlt").value = "";
+			document.getElementById("dth").value = "";	
+			document.getElementById("gt1").checked = false;		
+			document.getElementById("gt2").checked = false;
+		}
+	</script>
+</body>
+</html>

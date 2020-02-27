@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bài tập JQUERY ảnh chạy theo thời gian</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style/show_img.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			// var stt=0;
+			// startImg=$("div.div2:first").attr("stt");
+			// endImg=$("div.div2:last").attr("stt");
+			// // $("div.div2").each(function(){
+			// // 	if($(this).is(':visible'))
+			// // 	{
+			// // 		stt=$(this).attr("stt");
+			// // 		console.log(stt);
+			// // 	}
+
+			// // });
+			// $("#next").click(function(){
+			// 	if(stt==endImg)
+			// 	{
+			// 		stt=-1;
+			// 	}
+			// 	t=++stt;
+			// 	console.log(t);
+			// 	$("div.div2").hide();
+			// 	$("div.div2").eq(t).show();
+			// });
+			// $("#prev").click(function(){
+			// 	if(stt==startImg)
+			// 	{
+			// 		stt=endImg;
+			// 		t=++stt;
+			// 	}
+			// 	t=--stt;
+			// 	console.log(t);
+			// 	$("div.div2").hide();
+			// 	$("div.div2").eq(t).show();
+			// });
+			// var event=setInterval(function(){
+			// 	$("#next").click()
+			// },2000);
+			// $("#stop").click(function(){
+			// 	clearInterval(event);
+			// });
+			// $("#start").click(function(){
+			// 	event=setInterval(function(){
+			// 			$("#next").click()
+			// 		},2000);
+			// });
+			$("#div2").mouseenter(function(){
+				$("#next").css("display","block");
+				$("#prev").css("display","block");
+			});
+			$("#div2").mouseleave(function(){
+				$("#next").css("display","none");
+				$("#prev").css("display","none");
+			});
+			var l = 0;
+			$("#next").click(function(){
+				l=l+1;
+				if(l>=dsha.length)
+				{
+					l=0;
+				}
+				ht(l);
+			});
+			$("#prev").click(function(){
+				l=l-1;
+				if(l<0)
+				{
+					l=dsha.length-1;
+					console.log(l);
+				}
+				ht(l);
+			});
+			var event = setInterval(function(){
+				$("#next").click()
+			},1000);
+			$("#stop").click(function(){
+				clearInterval(event);
+			});
+			$("#start").click(function(){
+				event=setInterval(function(){
+						$("#next").click()
+					},2000);
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<div>
+			<input type="button" value="start" id="start">
+			<input type="button" value="stop" id="stop">
+		</div>
+		
+		<!-- <div class ="div2" stt="0">
+		
+				<img src="images/h1_2.jpg" class="image">
+				<p>Xioami note 10 Pro</p>
+			
+		</div>
+		<div class="div2" style="display: none" stt="1">
+			
+				<img src="images/h2_2.jpg" class="image">
+				<p>Xioami note 10 </p>
+		
+		</div>
+		<div class="div2" style="display: none" stt="2">
+			
+				<img src="images/h3_2.jpg" class="image">
+				<p>Xioami Mi 9ES</p>
+			
+		</div>
+		<div class="div2" style="display: none" stt="3">
+			
+				<img src="images/h4_2.jpg" class="image">
+				<p>Xioami Mi 9T</p>
+		
+		</div> -->
+		<div id="div2"></div>
+		<img src="images/prev.PNG" id="prev">
+		<img src="images/next1.PNG" id="next">
+	</div>
+	<script type="text/javascript">
+		var dsha=[
+			{
+				h:'images/h1_2.jpg',
+				ten:'Xioami note 10 Pro'
+			},
+			{
+				h:'images/h2_2.jpg',
+				ten:'Xioami note 10'
+			},
+			{
+				h:'images/h3_2.jpg',
+				ten:'Xioami Mi 9 SE'
+			},
+			{
+				h:'images/h4_2.jpg',
+				ten:'Xioami Mi 9 T'
+			},			
+		];
+		function ht(k){
+			var out='';
+			out+="<img src='"+dsha[k].h+"'class='image'><p>"+dsha[k].ten+"</p>";
+			document.getElementById("div2").innerHTML=out;
+		}
+		ht(0);
+		
+
+	</script>
+</body>
+</html>

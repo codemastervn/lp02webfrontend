@@ -1,0 +1,33 @@
+#id_fieldset{
+	width: 500px;
+}
+#table{
+	font-family: serif;
+	font-weight: bold;
+}
+#table th{
+	background-color: lightgreen;
+	color: #FFFFFF;
+	font-weight: bold;
+	padding: 10px;
+}
+#table tr:nth-child(even) {
+  background-color: #dddddd;
+}
+#table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+#table tr:hover {
+  background-color: #adadad;
+}
+.Yếu{
+	color: red;
+}
+.Giỏi{
+	color: green;
+}
+.td1{
+	
+	text-align: right;
+	font-weight: bold;
+}

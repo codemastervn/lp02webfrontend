@@ -1,0 +1,32 @@
+#div1{
+	position: relative;
+}
+#div2{
+	text-align: center;
+	border: 1px solid black;
+	background-color: #d1e0e0;
+}
+.image{
+	width: 400px;
+	height: 400px;
+}
+#prev{
+	position: absolute;
+	top: 170px;
+	left: 475px;
+	display: none;
+}
+#next{
+	position: absolute;
+	top: 170px;
+	right: 475px;
+	display: none;
+}
+#start{
+	position: absolute;
+	left: 410px;
+}
+#stop{
+	position: absolute;
+	right: 410px;
+}
