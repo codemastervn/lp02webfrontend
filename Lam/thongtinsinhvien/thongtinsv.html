@@ -31,12 +31,8 @@
 			return (student[i].lythuyet*1+student[i].thuchanh*1)/2;
 		}
 
-
-
-		function ShowDislay(){
-		
+		function ShowDislay(){	
 		var output='<table border="1" id="bang2">';
-		var sinhvien=student[i]
 		output+='<tr><th>STT</th><th>Họ và Tên</th><th>Năm sinh</th><th>Giới tính</th><th>Lý thuyết</th><th>Thực hành</th><th>TB</th><th>Xóa</th><th>Sửa</th></tr>'
 				for(var i=0;i<student.length;i++){	
 					//gioitinh
@@ -54,8 +50,8 @@
 					'</td><td>'+student[i].lythuyet+
 					'</td><td>'+student[i].thuchanh+
 					'</td><td>'+tb(i)+
-					'</td><td>'+'<input type="button" value="xoa">'+
-					'</td><td>'+'<input type="button" value="sua">'+
+					'</td><td>'+'<input type="button" class="xoa" value="xoa">'+
+					'</td><td>'+'<input type="button" class="sua" value="sua">'+
 					'</td></tr>'
 				}
 		output+='</table>'
@@ -81,14 +77,18 @@
 				ShowDislay();
 			}
 			
-			
-			
+			//xoa
+			$("#bang").mouseover(function(){
+				$(".xoa").click(function(){
+					$(this).closest("tr").remove("#bang tr")
+				})
+				
+			})
 
-
+			//gioi
 			$("#gioi").click(function(){
 				$("#bang tr").each(function(){
 					var trungbinh=$(this).find("td").eq(6).html();
-					// console.log(trungbinh)
 					if(trungbinh>=8){
 						$(this).show();
 						$(this).css({"color":"yellow"});
@@ -101,6 +101,7 @@
 				})
 			})
 
+			//yeu
 			$("#yeu").click(function(){
 				$("#bang tr").each(function(){
 					var trungbinh=$(this).find("td").eq(6).html();
@@ -116,11 +117,12 @@
 				})
 			})
 
+			//dssv
 			$("#dssv").click(function(){
 				ShowDislay();
 			})
 
-
+			//them
 			$("#them").click(function(){
 				if ($("#nhapthongtin").valid()) {
 					them();
@@ -155,12 +157,6 @@
 			ShowDislay();			
 		});
 	</script>
-
-
-	
-
-
-
 
 </head>
 <body>
