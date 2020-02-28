@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery_quản lý sinh viên</title>
+	<link rel="stylesheet" type="text/css" href="thongtinsv.css">
+	<meta charset="utf-8">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+
+	<script>
+		var student=[];
+
+		// function them(){
+		// var thongtin={
+		// 	hodem:document.getElementById('ho').value,
+		// 	ten:document.getElementById('ten').value,
+		// 	namsinh:document.getElementById('namsinh').value,
+		// 	gioitinhNam:document.getElementById("nam").checked, 
+		// 	gioitinhNu:document.getElementById("nu").checked,
+		// 	lythuyet:document.getElementById('lt').value,
+		// 	thuchanh:document.getElementById('th').value,
+		// 	}
+		// 	student.push(thongtin);
+		// 	//sessionStotage.setItem("copy",JSON.stringify(student));
+		// 	ShowDislay();
+		// }
+		
+
+		function tb(i)
+		{
+			return (student[i].lythuyet*1+student[i].thuchanh*1)/2;
+		}
+
+
+
+		function ShowDislay(){
+		
+		var output='<table border="1" id="bang2">';
+		var sinhvien=student[i]
+		output+='<tr><th>STT</th><th>Họ và Tên</th><th>Năm sinh</th><th>Giới tính</th><th>Lý thuyết</th><th>Thực hành</th><th>TB</th><th>Xóa</th><th>Sửa</th></tr>'
+				for(var i=0;i<student.length;i++){	
+					//gioitinh
+					var gioitinh='Không xác định';
+					if(student[i].gioitinhNam){
+						gioitinh=document.getElementById("nam").value;
+					}else if(student[i].gioitinhNu){
+						gioitinh=document.getElementById("nu").value;
+					}
+
+					output+='<tr><td>'+(i+1)+
+					'</td><td>'+student[i].hodem+student[i].ten+
+					'</td><td>'+student[i].namsinh+
+					'</td><td>'+gioitinh+
+					'</td><td>'+student[i].lythuyet+
+					'</td><td>'+student[i].thuchanh+
+					'</td><td>'+tb(i)+
+					'</td><td>'+'<input type="button" onclick="onDelete('+i+')" value="xoa">'+
+					'</td><td>'+'<input type="button" onclick="onEdit('+i+')" value="sua">'+
+					'</td></tr>'
+				}
+		output+='</table>'
+		document.getElementById('bang').innerHTML=output;
+		}
+
+		//var copy1=JSON.parse(sessionStotage.getItem("copy"));
+
+		$(document).ready(function(){
+
+			function them(){
+				var thongtin={
+				hodem:$("#ho").val(),
+				ten:$("#ten").val(),
+				namsinh:$("#namsinh").val(),
+				gioitinhNam:$("#nam:checked").val(),
+				gioitinhNu:$("#nu:checked").val(),
+				lythuyet:$("#lt").val(),
+				thuchanh:$("#th").val(),
+				}
+				student.push(thongtin);
+				ShowDislay();
+			}
+
+			$("#gioi").click(function(){
+				$("#bang tr").each(function(){
+					var trungbinh=$(this).find("td").eq(6).html();
+					// console.log(trungbinh)
+					if(trungbinh>=8){
+						$(this).css({"color":"yellow"});
+						$("tr:even").css({"background-color": "green"});
+					}
+					else if(trungbinh<8){
+						$(this).hide();
+					}
+				})
+			})
+
+			$("#yeu").click(function(){
+				$("#bang tr").each(function(){
+					var trungbinh=$(this).find("td").eq(6).html();
+					if(trungbinh<=4){
+						$(this).css({"color":"red"});
+						$("tr:odd").css({"background-color": "#A4A4A4"});
+					}
+					else if(trungbinh>4){
+						$(this).hide();
+					}
+				})
+			})
+
+			$("#dssv").click(function(){
+				ShowDislay();
+			})
+
+
+			$("#them").click(function(){
+				if ($("#nhapthongtin").valid()) {
+					them();
+				}
+			});
+
+
+			$("#nhapthongtin").validate({
+				rules:
+				{
+					ho:{ required:true, minlength:2},
+					ten:{ required:true},
+					lythuyet:{required:true, range: [0,10]},
+					thuchanh:{required:true, range: [0,10]}
+				},
+				messages:
+				{
+					ho:{ required: "hãy nhập họ !", minlength:"ít nhất 3 kí tự"},
+					ten:{ required: "hãy nhập tên !"},
+					lythuyet:{required: "hãy nhập điểm !"},
+					thuchanh:{required:"hãy nhập điểm !"}
+				},
+				// errorLabelContainer:"#myerror",
+				// wrapper: "li"
+				// submitHandler: function(form){
+				// 	if(confirm("dữ liệu form đã hợp lệ bạn có muốn submit ko?"))
+				// 	{
+				// 		alert('Hello');
+				// 	}
+				// }
+			});	
+			ShowDislay();			
+		});
+	</script>
+
+
+	
+
+
+
+
+</head>
+<body>
+	<form id="nhapthongtin" action="">
+		<fieldset>
+			<legend>Nhập thông tin</legend>
+				<div>
+					<div>Họ:</div><input type="text" id="ho" name="ho" placeholder="nhập họ">
+				</div>
+
+				<div>
+					<div>Tên:</div><input type="text" id="ten" name="ten" placeholder="nhập tên">
+				</div>
+
+				<div>
+					<div>Năm sinh:</div>
+						<select id="namsinh">
+							<script>
+								for(var i=1995;i<=2015;i++){
+								document.write('<option>'+i+'</option'+'<br>');
+								}
+							</script>
+						</select>
+				</div>
+
+				<div>
+					<div>Giới tính:</div><input type="radio" id="nam" value="Nam" name="gioitinh"><label>Nam</label>
+										<input type="radio" id="nu" value="Nữ" name="gioitinh"><label>Nữ</label>
+				</div>
+				<div>
+					<div>Điểm lý thuyết:</div><input type="number" id="lt" name="lythuyet" placeholder="nhập điểm">
+				</div>
+				<div>
+					<div>Điểm thực hành:</div><input type="number" id="th" name="thuchanh" placeholder="nhập điểm">
+				</div>
+
+				<div>
+					<input type="button"  value="Thêm" id="them">
+					<input type="button"  value="Giỏi" id="gioi">
+					<input type="button"  value="Yếu" id="yeu">
+					<input type="button" value="dssv" id="dssv">
+
+				</div>
+		</fieldset>
+	</form>
+	<div id="bang"></div>
+
+</body>
+</html>
