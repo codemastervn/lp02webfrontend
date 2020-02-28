@@ -54,8 +54,8 @@
 					'</td><td>'+student[i].lythuyet+
 					'</td><td>'+student[i].thuchanh+
 					'</td><td>'+tb(i)+
-					'</td><td>'+'<input type="button" onclick="onDelete('+i+')" value="xoa">'+
-					'</td><td>'+'<input type="button" onclick="onEdit('+i+')" value="sua">'+
+					'</td><td>'+'<input type="button" value="xoa">'+
+					'</td><td>'+'<input type="button" value="sua">'+
 					'</td></tr>'
 				}
 		output+='</table>'
@@ -63,6 +63,7 @@
 		}
 
 		//var copy1=JSON.parse(sessionStotage.getItem("copy"));
+
 
 		$(document).ready(function(){
 
@@ -79,14 +80,20 @@
 				student.push(thongtin);
 				ShowDislay();
 			}
+			
+			
+			
+
 
 			$("#gioi").click(function(){
 				$("#bang tr").each(function(){
 					var trungbinh=$(this).find("td").eq(6).html();
 					// console.log(trungbinh)
 					if(trungbinh>=8){
+						$(this).show();
 						$(this).css({"color":"yellow"});
 						$("tr:even").css({"background-color": "green"});
+						$("tr:odd").css({"background-color": "white"});
 					}
 					else if(trungbinh<8){
 						$(this).hide();
@@ -98,8 +105,10 @@
 				$("#bang tr").each(function(){
 					var trungbinh=$(this).find("td").eq(6).html();
 					if(trungbinh<=4){
+						$(this).show();
 						$(this).css({"color":"red"});
 						$("tr:odd").css({"background-color": "#A4A4A4"});
+						$("tr:even").css({"background-color": "white"});
 					}
 					else if(trungbinh>4){
 						$(this).hide();
