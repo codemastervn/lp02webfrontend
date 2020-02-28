@@ -18,6 +18,7 @@
 				{
 					ho:{ required:true, minlength:3},
 					ten:{ required:true},
+					ma_sv:{required: true, number: true},
 					gioitinh:{ required:true},
 					dlt:{ required:true, number: true, range: [0,10]},
 					dth:{ required:true, number: true, range: [0,10]},
@@ -27,6 +28,7 @@
 				{
 					ho:{ required: " hãy nhập họ", minlength:"ít nhất 3 kí tự"},
 					ten:{ required: "hãy nhập tên"},
+					ma_sv:{required: "hãy nhập mã", number: "mã số sv ko giống nhau"},
 					gioitinh:{required: "hãy chọn giới tính"},
 					dlt:{required:"hãy nhập điểm",number:"điểm là số thực",range:"0-10 điểm"},
 					dth:{required:"hãy nhập điểm",number:"điểm là số thực",range:"0-10 điểm"},
@@ -37,25 +39,37 @@
 			});
 			$("#dshsg").click(function(){
 				loc_hsg();
-				$("#xoa").each(function(){
-					if($(this).is(':visible'))
-					{
-						$("#xoa").remove();
-					}
-				});
+				// $("#xoa").click(function(){	
+				// 	$(this).closest("tr").remove();				
+				// });
 				$(".Giỏi").css("color","yellow");
 				$(".Giỏi:odd").css("background-color","green");
 
 			});
 			$("#dshsy").click(function(){
 				loc_hsy();
-				$("#xoa").remove();
+				//$("#xoa").remove();
 				$(".Yếu").css("color","red");
 				$(".Yếu:even").css("background-color","#adadad");
 			});
 			$("#dshs").click(function(){
 				ht_dssv(dssv);
 			});
+			function them()
+			{
+				var them_sv ={
+					hodem: $("#ho").val(),
+					ten: $("#ten").val(),
+					ns: $("#tuoi").val(),
+					gt1: $("#gt1:checked").val(),
+					gt2: $("#gt2:checked").val(),
+					dlt: $("#dlt").val()*1,
+					dth: $("#dth").val()*1,
+				};
+				dssv.push(them_sv);
+				sessionStorage.setItem("copy",JSON.stringify(dssv));
+				ht_dssv(dssv);
+			}
 			
 		});
 	</script>
@@ -75,6 +89,10 @@
 					<td><input type="text" id="ten" name="ten" ></td>
 				</tr>
 				<tr>
+					<td>Mã sv: </td>
+					<td><input type="number" id="ma_sv" name="ma_sv" ></td>
+				</tr>
+				<tr>
 					<td>Năm sinh:</td>
 					<td>
 						<div id="chonnamsinh"></div>
@@ -90,11 +108,11 @@
 				</tr>
 				<tr>
 					<td>Điểm lý thuyết:</td>
-					<td><input type="text" id="dlt" name="dlt"></td>
+					<td><input type="number" id="dlt" name="dlt"></td>
 				</tr>
 				<tr>
 					<td>Điểm thực hành:</td>
-					<td><input type="text" id="dth" name="dth"></td>
+					<td><input type="number" id="dth" name="dth"></td>
 				</tr>
 				<tr>
 					<td colspan="2" style="background-color: #E5E5E5"></td>
@@ -128,6 +146,7 @@
 			{
 				hodem: "Nguyễn Văn",
 				ten: "Tư",
+				ma_sv: 1,
 				ns: 1996,
 				gt: "Nam",
 				dlt: 9,
@@ -136,6 +155,7 @@
 			{
 				hodem: "Nguyễn Văn",
 				ten: "Năm",
+				ma_sv: 2,
 				ns: 1996,
 				gt: "Nam",
 				dlt: 9.6,
@@ -144,6 +164,7 @@
 			{
 				hodem: "Nguyễn Văn",
 				ten: "Sáu",
+				ma_sv: 3,
 				ns: 1996,
 				gt: "Nam",
 				dlt: 9,
@@ -152,6 +173,7 @@
 			{
 				hodem: "Nguyễn Văn",
 				ten: "Bảy",
+				ma_sv: 4,
 				ns: 1996,
 				gt:"Nam",
 				dlt: 9,
@@ -170,7 +192,13 @@
 			output+="<tr><th>STT</th><th>Họ và tên</th><th>Giới tính</th><th>Tuổi</th><th>Điểm lý thuyết</th><th>Điểm thực hành</th><th>Điểm TB</th><th>Xếp loại</th><th>Action</th></tr>"
 			for (var i = 0; i < dssv.length; i++)
 			{
-				var dtb = (dssv[i].dlt + dssv[i].dth)/2;
+				
+				if(dssv[i].gt1){
+					dssv[i].gt=document.getElementById("gt1").value;
+				}else if(dssv[i].gt2){
+					dssv[i].gt=document.getElementById("gt2").value;
+				}
+				var dtb = (dssv[i].dlt + dssv[i].dth)*1/2;
 				output+="<tr class='"+xeploai(dtb)+"' onclick='sua("+i+")'><td>" + (i + 1)+
 				"</td><td>" + dssv[i].hodem +  " " + dssv[i].ten +
 				"</td><td>" + dssv[i].gt +
@@ -179,14 +207,13 @@
 				"</td><td class='td1'>" + dssv[i].dth +
 				"</td><td class='td1'>" + dtb +
 				"</td><td>" + xeploai(dtb) +
-				"</td><td>" + "<input id='xoa' type='button' onclick='xoa_ds("+i+")' value='Xóa'>" +
+				"</td><td>" + "<input id='xoa' type='button' onclick='xoa_ds("+dssv[i].ma_sv+")' value='Xóa'>" +
 				"</td></tr>"
 			}
 			output+="</table>";
 			document.getElementById("content").innerHTML = output;
 		}
 		ht_dssv(dssv);
-
 		function xeploai(dtb){
 			var xl;
 			if(dtb<5)
@@ -245,30 +272,28 @@
 
 
 
-		function them()
-		{
-			var date=new Date();
-			var year = date.getFullYear();
-			var check;
-			var kt = document.getElementById("gt2").checked;
-			if(kt)
-			{
-				check = document.getElementById("gt2").value;
-			}
-			else
-				check = document.getElementById("gt1").value;
-			var them_sv ={
-				hodem: document.getElementById("ho").value,
-				ten: document.getElementById("ten").value,
-				ns: document.getElementById("tuoi").value,
-				gt: check,
-				dlt: document.getElementById("dlt").value*1,
-				dth: document.getElementById("dth").value*1,
-			};
-			dssv.push(them_sv);
-			sessionStorage.setItem("copy",JSON.stringify(dssv));
-			ht_dssv(dssv);
-		}
+		// function them()
+		// {
+		// 	var check;
+		// 	var kt = document.getElementById("gt2").checked;
+		// 	if(kt)
+		// 	{
+		// 		check = document.getElementById("gt2").value;
+		// 	}
+		// 	else
+		// 		check = document.getElementById("gt1").value;
+		// 	var them_sv ={
+		// 		hodem: document.getElementById("ho").value,
+		// 		ten: document.getElementById("ten").value,
+		// 		ns: document.getElementById("tuoi").value,
+		// 		gt: check,
+		// 		dlt: document.getElementById("dlt").value*1,
+		// 		dth: document.getElementById("dth").value*1,
+		// 	};
+		// 	dssv.push(them_sv);
+		// 	sessionStorage.setItem("copy",JSON.stringify(dssv));
+		// 	ht_dssv(dssv);
+		// }
 		function loc_hsg(){
 			var copy1=JSON.parse(sessionStorage.getItem("copy"));
 			for (var i = 0; i <copy1.length; i++) 
@@ -296,8 +321,16 @@
 			}
 		}
 		function xoa_ds(i){
-			dssv.splice(i, 1);
-			sessionStorage.setItem("copy",JSON.stringify(dssv));
+			for(var l = 0; l < dssv.length; l++)
+			{
+				if(i==dssv[l].ma_sv)
+				{
+					dssv.splice(l, 1);
+					sessionStorage.setItem("copy",JSON.stringify(dssv));
+				}
+			}
+
+			
 			ht_dssv(dssv);
 		}
 		function sua(i){
