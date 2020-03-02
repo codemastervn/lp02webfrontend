@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>quản lý sinh viên</title>
+
+	<title>Jquery_quản lý sinh viên</title>
+	<link rel="stylesheet" type="text/css" href="qlsv.css">
+	<meta charset="utf-8">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+		<script>
+		var student=[];
+
+		//ham sap xep ten
+		function sx_ten(){
+			student.sort(function(a, b){
+				var n1 = a.ten.toLowerCase();
+				var n2 = b.ten.toLowerCase();
+				if(n1<n2){
+					return -1;
+				}
+				if(n1>n2){
+					return 1;
+				}
+				return 0;
+
+			});
+			ShowDislay(student);
+		}
+		//ham sap xep diem
+	
+		//ham trung binh
+		function tb(i)
+		{
+			return (student[i].lythuyet*1+student[i].thuchanh*1)/2;
+		}
+
+		function sx_diem(){
+		student.sort(function(a, b){
+			return ((a.lythuyet*1+a.thuchanh*1)/2)-((b.lythuyet*1+b.thuchanh*1)/2);
+		});
+		ShowDislay(student);
+	}
+		
+
+		function ShowDislay(){	
+		var output='<table id="bang2" class="table table-hover">';
+		output+='<tr class=" border bg-info"><th>STT</th><th>Họ và Tên</th><th>Năm sinh</th><th>Giới tính</th><th>Lý thuyết</th><th>Thực hành</th><th>TB</th><th>Xóa</th><th>Sửa</th></tr>'
+				for(var i=0;i<student.length;i++){	
+					//gioitinh
+					var gioitinh='Không xác định';
+					if(student[i].gioitinhNam){
+						gioitinh=document.getElementById("nam").value;
+					}else if(student[i].gioitinhNu){
+						gioitinh=document.getElementById("nu").value;
+					}
+
+					output+='<tr><td>'+(i+1)+
+					'</td><td>'+student[i].hodem+" "+student[i].ten+
+					'</td><td>'+student[i].namsinh+
+					'</td><td>'+gioitinh+
+					'</td><td>'+student[i].lythuyet+
+					'</td><td>'+student[i].thuchanh+
+					'</td><td>'+tb(i)+
+					'</td><td>'+'<input type="button" class="xoa" value="xoa" class="btn btn-warning">'+
+					'</td><td>'+'<input type="button" class="sua" value="sua" class="btn">'+
+					'</td></tr>'
+				}
+		output+='</table>'
+		document.getElementById('bang').innerHTML=output;
+		}
+
+		//var copy1=JSON.parse(sessionStotage.getItem("copy"));
+
+
+		$(document).ready(function(){
+
+			function them(){
+				var thongtin={
+				hodem:$("#ho").val(),
+				ten:$("#ten").val(),
+				namsinh:$("#namsinh").val(),
+				gioitinhNam:$("#nam:checked").val(),
+				gioitinhNu:$("#nu:checked").val(),
+				lythuyet:$("#lt").val(),
+				thuchanh:$("#th").val(),
+				}
+				student.push(thongtin);
+				ShowDislay();
+			}
+			
+			//xoa
+			$("#bang").mouseover(function(){
+				$(".xoa").click(function(){
+					$(this).closest("tr").remove("#bang tr")
+				})
+				
+			})
+
+			//gioi
+			$("#gioi").click(function(){
+				$("#bang tr").each(function(){
+					var trungbinh=$(this).find("td").eq(6).html();
+					if(trungbinh>=8){
+						$(this).show();
+						$(this).css({"color":"yellow"});
+						$("tr:even").css({"background-color": "green"});
+						$("tr:odd").css({"background-color": "white"});
+					}
+					else if(trungbinh<8){
+						$(this).hide();
+					}
+				})
+			})
+
+			//yeu
+			$("#yeu").click(function(){
+				$("#bang tr").each(function(){
+					var trungbinh=$(this).find("td").eq(6).html();
+					if(trungbinh<=4){
+						$(this).show();
+						$(this).css({"color":"red"});
+						$("tr:odd").css({"background-color": "#A4A4A4"});
+						$("tr:even").css({"background-color": "white"});
+					}
+					else if(trungbinh>4){
+						$(this).hide();
+					}
+				})
+			})
+
+			//dssv
+			$("#dssv").click(function(){
+				ShowDislay();
+			})
+
+			//them
+			$("#them").click(function(){
+				if ($("#nhapthongtin").valid()) {
+					them();
+				}
+			});
+			//sapxepten
+			$("#sxten").click(function(){
+				if ($("#nhapthongtin").valid()) {
+					sx_ten();
+			}
+			});
+
+			//sapxepdiem
+			$("#sxdiem").click(function(){
+				if ($("#nhapthongtin").valid()) {
+					sx_diem();
+			}
+			});
+
+
+			$("#nhapthongtin").validate({
+				rules:
+				{
+					ho:{ required:true, minlength:2},
+					ten:{ required:true},
+					lythuyet:{required:true, range: [0,10]},
+					thuchanh:{required:true, range: [0,10]}
+				},
+				messages:
+				{
+					ho:{ required: "hãy nhập họ !", minlength:"ít nhất 3 kí tự"},
+					ten:{ required: "hãy nhập tên !"},
+					lythuyet:{required: "hãy nhập điểm !"},
+					thuchanh:{required:"hãy nhập điểm !"}
+				},
+				// errorLabelContainer:"#myerror",
+				// wrapper: "li"
+				// submitHandler: function(form){
+				// 	if(confirm("dữ liệu form đã hợp lệ bạn có muốn submit ko?"))
+				// 	{
+				// 		alert('Hello');
+				// 	}
+				// }
+
+				// sapxepten
+
+			});	
+			ShowDislay();			
+		});
+	</script>
+
+</head>
+<body>
+	<div id="ngang">
+	<div >
+		<div class="panel panel-primary" id="githe">
+			<div class="panel-heading">Chương trình quản lý sinh viên</div>
+			<div class="panel-body">
+				<form id="nhapthongtin">
+						<div class="col-6 col-sm-8 form-group">
+							 <label>Họ:</label>
+							 <input class="form-control" type="text" id="ho" name="ho" placeholder="nhập họ">
+
+							<label>Tên:</label>
+							<input class="form-control" type="text" id="ten" name="ten" placeholder="nhập tên">
+						
+							<label>Năm sinh:</label>
+							<select id="namsinh" class="form-control">
+								<script>
+									for(var i=1995;i<=2015;i++){
+									document.write('<option>'+i+'</option'+'<br>');
+									}
+								</script>
+							</select>
+						
+							<label>Giới tính:</label>
+							<input  type="radio" id="nam" value="Nam" name="gioitinh">
+							<label>Nam</label>
+							<input type="radio" id="nu" value="Nữ" name="gioitinh"><label>Nữ</label></br>
+					
+							<label>Lý Thuyết:</label>
+							<input class="form-control" type="number" id="lt" name="lythuyet" placeholder="nhập điểm">
+					
+							<label>Thực hành</label>
+							<input class="form-control" type="number" id="th" name="thuchanh" placeholder="nhập điểm">
+						</div>
+				</form>
+		 	</div>
+	 		<div>
+				<center>
+					<input type="button" class="btn btn-primary"  value="Thêm" id="them">
+					<input type="button" class="btn btn-success"  value="Giỏi" id="gioi">
+					<input type="button" class="btn btn-danger"  value="Yếu" id="yeu">
+					<input type="button"  class="btn btn-info" value="dssv" id="dssv">
+					<label>Sắp xếp:</label>
+					<input type="button" class="btn btn-outline-primary" value="Điểm" id="sxdiem">
+					<input type="button" class="btn btn-outline-primary" value="Tên" id="sxten">
+				</center>
+			</div>
+		</div>
+	</div>	
+	<div id="bang"></div>
+</div>
+</body>
+</html>
