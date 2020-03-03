@@ -1,0 +1,16 @@
+#sinhnhat{
+	width: 80%;
+}
+td{
+	text-align: center;
+}
+table th{
+	text-align: center;
+}
+img{
+	width: 30px;
+	height: 30px;
+}
+.img-circle{
+	border: 1px solid orange;
+}

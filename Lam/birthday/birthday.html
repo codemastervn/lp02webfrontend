@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sinh nhật Nhân viên</title>
+	<link rel="stylesheet" type="text/css" href="birthday.css">
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script>
+		var thongtinnv=[{
+			manv:1,
+			hodem:"Lê Ngọc",
+			ten:"Lâm",
+			thang:3,
+			ngaysinh:8/3/1993,
+			quequan:"QB",
+			anh:"<img class='img-circle' src='image/anh1.jpg'>"
+		},
+		{
+			manv:2,
+			hodem:"Nguyễn Văn",
+			ten:"Tư",
+			thang:2,
+			ngaysinh:16/2/1996,
+			quequan:"QN",
+			anh:"<img class='img-circle'  src='image/anh2.jpg'>"
+		},
+		{
+			manv:3,
+			hodem:"Võ Thị",
+			ten:"Hiền",
+			thang:4,
+			ngaysinh:4/4/1994,
+			quequan:"ĐN",
+			anh:"<img class='img-circle' src='image/anh3.jpg'>"
+		},
+		{
+			manv:4,
+			hodem:"Lê Minh",
+			ten:"Hoa",
+			thang:3,
+			ngaysinh:16/3/1998,
+			quequan:"HN",
+			anh:"<img class='img-circle' src='image/anh4.jpg'>"
+		},{
+			manv:5,
+			hodem:"Trần Nhật",
+			ten:"Anh",
+			thang:6,
+			ngaysinh:9/6/1993,
+			quequan:"HCM",
+			anh:"<img class='img-circle' src='image/anh5.jpg'>"
+		},
+		{
+			manv:6,
+			hodem:"Nguyễn Trần",
+			ten:"Nhân",
+			thang:1,
+			ngaysinh:13/1/1993,
+			quequan:"QT",
+			anh:"<img class='img-circle' src='image/anh6.jpg'>"
+		},{
+			manv:7,
+			hodem:"Võ Duy",
+			ten:"Thắng",
+			thang:9,
+			ngaysinh:25/5/1993,
+			quequan:"VT",
+			anh:"<img class='img-circle' src='image/anh7.jpg'>"
+		}];
+
+		var thangs=[1,2,3,4,5,6,7,8,9,10,11,12];
+
+
+		$(document).ready(function(){
+			function showbirthday(){
+				var out=" ";
+				out+="<table class='table table-bordered table-hover'>"
+				out+="<tr class='border bg-info'><th style='width: 10%'>Tháng</th><th style='width: 10%'>Số Lượng</th><th style='width: 50%'>Nhân Viên</th></tr>"
+				for(var i=0;i<thangs.length;i++){
+					var img_nv = " ";
+					var t=0;					
+					for(var j=0;j<thongtinnv.length;j++){						
+						if(thangs[i]==thongtinnv[j].thang){
+							t+=1;
+							img_nv+=thongtinnv[j].anh
+						}
+					}
+					out+="<tr>"+
+							"<td>"+(i+1)+"</td>"+
+							"<td>"+t+"</td>"+
+							"<td>"+img_nv+"</td>"			
+				}
+				out+="</tr></table>";
+				$("#sinhnhat").html(out);
+			}
+				showbirthday()
+		})
+
+	</script>
+</head>
+<body>
+	<div id="sinhnhat" class="container-fluid"></div>
+
+</body>
+</html>
