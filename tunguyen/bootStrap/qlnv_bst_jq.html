@@ -3,6 +3,7 @@
 <head>
 	<title>Bài tập quản lý nhân viên</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style/qlnv_bst_jq.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -14,140 +15,142 @@
 	<script type="text/javascript">
 		var dsnv=[
 			{
-				manv:1,
+				manv:'MS01',
 				hodem:'Nguyễn Văn',
 				ten:'Tư',
-				ngaysinh:24,
-				thangsinh:2,
+				ngaysinh:"12/24/1996",
 				quequan:'Quảng Nam',
-				avt:'images/h1.jpg'
+				avt:'images/h1.jpg',
+				gt:'Nam'
 			},
 			{
-				manv:2,
+				manv:'MS02',
 				hodem:'Nguyễn Văn',
 				ten:'Năm',
-				ngaysinh:24,
-				thangsinh:4,
+				ngaysinh:"11/21/1996",
 				quequan:'Quảng Nam',
-				avt:'images/h2.jpg'
+				avt:'images/h2.jpg',
+				gt:'Nam'
 			},
 			{
-				manv:3,
+				manv:'MS03',
 				hodem:'Nguyễn Văn',
 				ten:'Sáu',
-				ngaysinh:20,
-				thangsinh:2,
+				ngaysinh:"01/11/1999",
 				quequan:'Quảng Ngãi',
-				avt:'images/h3.jpg'
+				avt:'images/h3.jpg',
+				gt:'Nam'
 			},
 			{
-				manv:4,
+				manv:'MS04',
 				hodem:'Nguyễn Văn',
 				ten:'Bảy',
-				ngaysinh:19,
-				thangsinh:12,
+				ngaysinh:"09/21/1996",
 				quequan:'Quảng Ninh',
-				avt:'images/h4.jpg'
+				avt:'images/h4.jpg',
+				gt:'Nam'
 			},
 			{
-				manv:5,
+				manv:'MS05',
 				hodem:'Nguyễn Thị',
 				ten:'Bích',
-				ngaysinh:25,
-				thangsinh:4,
+				ngaysinh:"11/12/1991",
 				quequan:'Quy Nhơn',
-				avt:'images/h5.jpg'
+				avt:'images/h5.jpg',
+				gt:'Nữ'
 			},
 			{
-				manv:6,
+				manv:'MS06',
 				hodem:'Trần Thị',
 				ten:'Bích Thảo',
-				ngaysinh:21,
-				thangsinh:4,
+				ngaysinh:"10/01/1992",
 				quequan:'Đà Nẵng',
-				avt:'images/h6.jpg'
+				avt:'images/h6.jpg',
+				gt:'Nữ'
 			},
 			{
-				manv:7,
-				hodem:'Hoàng Thị Lại',
-				ngaysinh:9,
-				thangsinh:11,
+				manv:'MS07',
+				hodem:'Hoàng Thị',
+				ten:'Lại',
+				ngaysinh:"07/21/1996",
 				quequan:'Quảng Nam',
-				avt:'images/h7.jpg'
+				avt:'images/h7.jpg',
+				gt:'Nữ'
 			},
 			{
-				manv:8,
+				manv:'MS08',
 				hodem:'Nguyễn Thị Thông',
-				ngaysinh:25,
-				thangsinh:5,
+				ngaysinh:"09/21/1996",
 				quequan:'Đà Nẵng',
-				avt:'images/h8.jpg'
+				avt:'images/h8.jpg',
+				gt:'Nữ'
 			},
 			{
-				manv:9,
+				manv:'MS09',
 				hodem:'Trần Văn',
 				ten:'Tiến',
-				ngaysinh:25,
-				thangsinh:11,
+				ngaysinh:"12/21/1996",
 				quequan:'Quy Nhơn',
-				avt:'images/h9.jpg'
+				avt:'images/h9.jpg',
+				gt:'Nam'
 			},
 			{
-				manv:10,
+				manv:'MS010',
 				hodem:'Nguyễn Thị',
 				ten:'Thu Hoài',
-				ngaysinh:11,
-				thangsinh:11,
+				ngaysinh:"05/21/1996",
 				quequan:'Quy Nhơn',
-				avt:'images/h10.jpg'
+				avt:'images/h10.jpg',
+				gt:'Nữ'
 			},
 			{
-				manv:11,
+				manv:'MS011',
 				hodem:'Nguyễn Thị',
 				ten:'Thu Phương',
-				ngaysinh:12,
-				thangsinh:10,
+				ngaysinh:"04/21/1996",
 				quequan:'Quy Nhơn',
-				avt:'images/h11.jpg'
+				avt:'images/h11.jpg',
+				gt:'Nữ'
 			},
 			{
-				manv:12,
+				manv:'MS012',
 				hodem:'Đỗ Hoài',
 				ten:'Lương',
-				ngaysinh:11,
-				thangsinh:4,
+				ngaysinh:"09/21/1996",
 				quequan:'Quảng Nam',
-				avt:'images/h12.jpg'
+				avt:'images/h12.jpg',
+				gt:'Nam'
 			},
 			{
-				manv:13,
+				manv:'MS013',
 				hodem:'Phan Ngọc',
 				ten:'Trung',
-				ngaysinh:27,
-				thangsinh:3,
+				ngaysinh:"08/21/1996",
 				quequan:'Huế',
-				avt:'images/h13.jpg'
+				avt:'images/h13.jpg',
+				gt:'Nam'
 			},
 			{
-				manv:14,
+				manv:'MS014',
 				hodem:'Nguyễn Thị',
 				ten:'Tuyết',
-				ngaysinh:10,
-				thangsinh:9,
+				ngaysinh:"04/21/1996",
 				quequan:'Đà Nẵng',
-				avt:'images/h14.jpg'
+				avt:'images/h14.jpg',
+				gt:'Nữ'
 			},
 			{
-				manv:15,
+				manv:'MS015',
 				hodem:'Nguyễn Thị',
 				ten:'Thu',
-				ngaysinh:11,
-				thangsinh:1,
+				ngaysinh:"08/21/1996",
 				quequan:'Quy Nhơn',
-				avt:'images/h15.jpg'
+				avt:'images/h15.jpg',
+				gt:'Nữ'
 			}
 		];
 		var out='';
+		$(document).ready(function(){
 		out+="<table class='table table-bordered'>"+
 					"<thead>"+
 						"<tr><th style='width:100px'>Tháng</th><th style='width:150px'>Số lượng</th><th>Nhân viên</th></tr>"+
@@ -156,10 +159,12 @@
 			var t = 0;
 			var ha = " ";
 			for (var l = 0; l < dsnv.length; l++) {
-				if(i==dsnv[l].thangsinh)
+				var date = new Date(dsnv[l].ngaysinh);
+				var month = date.getMonth() + 1;
+				if(i==month)
 				{
 					t=t+1;
-					ha+="<img src='"+dsnv[l].avt+"' class='rounded-circle' width='50px' height='50px'>";
+					ha+="<div id='"+dsnv[l].manv+"'><img src='"+dsnv[l].avt+"' class='rounded-circle' width='50px' height='50px'></div>";
 				}
 			}
 			out+="	<tr>"+
@@ -170,6 +175,21 @@
 		};
 		out+="</tbody></table>";
 		$("#content").html(out);
+		$.each(dsnv,function(index){
+		    $('#'+dsnv[index].manv+'').tooltip({title: "<div id='div2'>"+
+		                                    "<div id='div3'>"+
+		                                      "<img src='"+dsnv[index].avt+"' class='rounded-circle' width='150px' height='150px'><br>"+
+		                                      "<h3><b>"+dsnv[index].hodem+" "+dsnv[index].ten+"</b></h3><h3>Nhân viên<h3>"+
+		                                    "</div>"+
+		                                    "<div id='div4'>"+
+		                                      "<p><h4><b>Mã nhân viên</b></h4><h6>"+dsnv[index].manv+"</h6></p>"+
+		                                      "<p><h4><b>Ngày sinh</b></h4><h6>"+dsnv[index].ngaysinh+"</h6></p>"+
+		                                      "<p><h4><b>Giới tính</b></h4><h6>"+dsnv[index].gt+"</h6></p>"+
+		                                      "<p><h4><b>Quê quán</b></h4><h6>"+dsnv[index].quequan+"</h6></p>"+
+		                                    "<div>"+
+		                                  "</div>", html: true}); 
+		  });
+		});
 			
 	</script>
 

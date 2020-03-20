@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>bài tập xây dựng cv online</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style/cv_online.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/javascript">
+		var info = [
+			{
+				ten:"NGUYỄN VĂN TƯ",
+				anh:"images/h1.jpg",
+				ngaysinh:"02/24/1996",
+				email: "tuvannguyen96@gmail.com",
+				quequan: "Quảng Nam",
+				sdt: "0372943672",
+				gioithieu:"Mình là chuột, mình rất thích lập trình, mong muốn trở thành một lập trình viên chuyên nghiệp",
+				kynangmem:['Làm việc nhóm', 'Đứng trước đám đông'],
+				ngoaingu:['Tiếng Anh', 'Tiếng Nhật', 'Tiếng Hàn', 'Tiếng Trung'],
+				kynanglamviec:['C','jquery','Bootstrap','javascript', 'CSS', 'HTML', 'Java','VHDL','CCS'],
+				hoctap:['HỌC TẠI TRƯỜNG ĐẠI HỌC KHOA HỌC HUẾ','HỌC KHÓA HỌC LẬP TRÌNH'],
+				kinhnghiemlamviec:['TẠI TRƯỜNG ĐẠI HỌC', 'CÔNG TY AN NINH VIỆT'],
+				level:[20,30,50,60,80]
+			}
+		];
+		var t=0;
+		var out="<div id='div0'>";
+			out+="<div id='table1' class='bg-dark text-white'>"+
+					"<div class='row'>"+
+						"<div class='col-sm-2'><img src='"+info[0].anh+"' class='rounded-circle' width='100px' height='100px'></div>"+
+						"<div class='col'>"+
+							"<table>"+
+								"<tr><td colspan='4'><h1>"+info[0].ten+"</h1></td></tr>"+
+
+								"<tr>"+
+									"<td class='fas fa-home'> "+info[0].quequan+ " &nbsp; &nbsp; &nbsp;</td>"+
+									"<td class='fas fa-phone'> "+info[0].sdt+"  &nbsp; &nbsp; &nbsp; &nbsp;</td>"+
+									"<td class='far fa-folder'> "+info[0].email+"  &nbsp; &nbsp; &nbsp;</td>"+
+									"<td class='fas fa-birthday-cake'> "+info[0].ngaysinh+" </td>"+
+								"</tr>"+
+							"</table>"+
+						"</div>"+
+					"</div>"+
+			"</div>";
+			out+="<div id='div2' class='bg-dark text-white'>"+
+				"<p>GIỚI THIỆU</br>..........................................................."+
+					"</br>"+info[0].gioithieu+""+
+					"</br>..........................................................."+
+					"</br>KỸ NĂNG MỀM"+
+					"</br>..........................................................."+
+					"</br><span class='fas fa-caret-right'>"+info[0].kynangmem[0]+"</span>"+
+					"</br><span class='fas fa-caret-right'>"+info[0].kynangmem[1]+"</span>"+
+					"</br>..........................................................."+
+					"</br>NGOẠI NGỮ"
+					for(var i = 0; i < info[0].ngoaingu.length; i++){
+						out+="<p>"+
+								"<table border='0'>"+
+									"<tr><td colspan='2'><span class='fas fa-caret-right'>"+info[0].ngoaingu[i]+"</span></td></tr>"+
+									"<tr>"+
+										"<td with='50px' class='fas fa-headphones'></td>"+
+										"<td width='195px'>"+
+											"<div class='progress'>"+
+											    "<div class='progress-bar bg-success' style='width:70%'></div>"+
+											"</div>"+
+										"</td>"+
+									"</tr>"+
+									"<tr>"+
+										"<td with='50px' class='fas fa-microphone'></td>"+
+										"<td width='195px'>"+
+											"<div class='progress'>"+
+											    "<div class='progress-bar bg-success' style='width:40%'></div>"+
+											"</div>"+
+										"</td>"+
+									"</tr>"+
+									"<tr>"+
+										"<td with='50px' class='far fa-address-card'></td>"+
+										"<td width='195px'>"+
+											"<div class='progress'>"+
+											    "<div class='progress-bar bg-success' style='width:50%'></div>"+
+											"</div>"+
+										"</td>"+
+									"<tr>"+
+										"<td with='50px' class='fas fa-edit'></td>"+
+										"<td width='195px'>"+
+											"<div class='progress'>"+
+											    "<div class='progress-bar bg-success' style='width:30%'></div>"+
+											"</div>"+
+										"</td>"+
+									"</tr>"+
+								"</table>"+
+							"</p>"
+					};
+				out+="</p>"+
+			"</div>";
+			out+="<div id='div3'>"+
+					"<div class='bg-dark text-white' id='div3_1'>KỸ NĂNG LÀM VIỆC</div>"+
+					"<div class='div3_2'>"+
+						"<table>"+
+							"<tr>";
+						for (var i = 0; i < info[0].kynanglamviec.length; i++) {
+							t=t+1;
+							out+="<td class='td_1'><span class='fas fa-caret-right'>"+info[0].kynanglamviec[i]+"</span></td>"
+							if (t%3==0){
+								out+="</tr><tr>"
+							}
+						}
+						out+="</tr></table>"+
+					"</div>"+
+					"<div class='bg-dark text-white' id='div4_1'>HỌC TẬP</div>"+
+					"<div class='div3_2'>"+
+						"<table>"+
+							"<tr>"+
+								"<td class='td_2'>08/2014 <br> &emsp;07/2020</td>"+
+								"<td><span class='text-warning'>"+info[0].hoctap[0]+"</span><br>Học ngành điện tử-viễn thông</td>"+
+							"</tr>"+
+							"<tr>"+
+								"<td colspan='2' class='td_3'></td>"+
+							"</tr>"+
+							"<tr>"+
+								"<td class='td_2'>11/2019 <br> &emsp;06/2020</td>"+
+								"<td><span class='text-warning'>"+info[0].hoctap[1]+"</span><br>Học về ngôn ngữ lập trình web</td>"+
+							"</tr>"+
+							"<tr>"+
+								"<td colspan='2' class='td_3'></td>"+
+							"</tr>"+
+						"</table>"+
+					"</div>"+
+					"<div class='bg-dark text-white' id='div4_1'>KINH NGHIỆM LÀM VIỆC</div>"+
+					"<div class='div3_2'>"+
+						"<table>"+
+							"<tr>"+
+								"<td class='td_2'>01/2016 <br> &emsp;06/2016</td>"+
+								"<td><span class='text-warning'>"+info[0].kinhnghiemlamviec[0]+"</span><br><b>Trưởng nhóm</b><br>Thiết kế hệ thống nhà thông minh bằng mô hình</td>"+
+							"</tr>"+
+							"<tr>"+
+								"<td colspan='2' class='td_3'></td>"+
+							"</tr>"+
+							"<tr>"+
+								"<td class='td_2'>08/2017 <br> &emsp;12/2018</td>"+
+								"<td><span class='text-warning'>"+info[0].kinhnghiemlamviec[0]+"</span><br><b>Trưởng nhóm</b><br>Thiết kế thùng rác thông minh</td>"+
+							"</tr>"+
+							"<tr>"+
+								"<td colspan='2' class='td_3'></td>"+
+							"</tr>"+
+							"<tr>"+
+								"<td class='td_2'>11/2018 <br> &emsp;6/2019</td>"+
+								"<td><span class='text-warning'>"+info[0].kinhnghiemlamviec[0]+"</span><br><b>Trưởng nhóm</b><br>Thiết kế máy bay điều khiển từ xa</td>"+
+							"</tr>"+
+							"<tr>"+
+								"<td colspan='2' class='td_3'></td>"+
+							"</tr>"+
+							"<tr>"+
+								"<td class='td_2'>8/2019 <br> &emsp;10/2019</td>"+
+								"<td><span class='text-warning'>"+info[0].kinhnghiemlamviec[1]+"</span><br><b>Nhân viên</b><br>Tham gia dự án xây dựng nhà thông minh Penhouse với các vị trí như:<ul><li>Nhân viên thiết kế hệ thống lắp đặt</li><li>Nhân viên lắp đặt hệ thống</li><li>Nhân viên tìm kiếm đối tác</li><li>Nhân viên gặp gỡ, tư vấn khách hàng</li></ul></td>"+
+							"</tr>"+
+							"<tr>"+
+								"<td colspan='2' class='td_3'></td>"+
+							"</tr>"+
+						"</table>"+
+					"</div>"+
+				"</div>"+
+		"</div>";
+		$(document).ready(function(){
+			$("#content").html(out);
+		});
+
+	</script>
+
+</body>
+</html>
