@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Máy tính bỏ túi</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id='div1'></div>
+	<script type="text/javascript">
+		var show='';
+		var dsbt=['btn0','btn1','btn2','btn3','btn4','btn5','btn6','btn7','btn8','btn9','btn10','btn11','btn12','btn13','btn14','btn15','btn16','btn17','btn18','btn19','btn20'];
+		var dsvl=[0,1,2,3,4,5,6,7,8,9,'&#46;','&#43;','&#45;','&#42;','&#47;','&#37;','&#178;','&#33;','&#8730;','&#61;'];
+		var out='';
+		out+="<table>"+
+				"<tr>"+
+					"<td colspan='5'>Máy tính bỏ túi</td>"+
+				"</tr>"+
+				"<tr>"+
+					"<td colspan='5'><input type='text' id='mh'></td>"+
+				"</tr>"+
+				"<tr>"+
+					"<td colspan='5'><button type='button' id='"+dsbt[0]+"'>AC</button></td>"+
+				"</tr><tr>"
+		for (var i = 1; i < dsbt.length; i++){
+				out+="<td><button type='button' id='"+dsbt[i]+"' value='"+dsvl[i-1]+"'>"+dsvl[i-1]+"</button></td>";
+				if(i%5==0){
+					out+="</tr><tr>";
+				}
+
+		}
+		out+="</table>";		
+		$("#div1").html(out);
+		$(document).ready(function(){
+			$.each(dsbt,function(index){
+				$("#"+dsbt[index-1]+"").click(function(){
+					show+=$("#"+dsbt[index-1]+"").val();
+					$("#mh").val(show);
+				});
+				$("#"+dsbt[index-1]+"").click(function(){
+				var a=eval(show);
+				var b=Math.pow(a, 2);
+				$("#mh").val(b);
+			});
+			});
+			$("#"+dsbt[0]+"").click(function(){
+				show='';
+				$("#mh").val(show);
+			});
+
+			$("#"+dsbt[dsbt.length-1]+"").click(function(){
+				var result =eval(show);
+				$("#mh").val(result);
+			});
+		});
+	</script>
+
+</body>
+</html>
